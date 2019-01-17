@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>添加权限信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
+    <link rel="stylesheet" href="../../assets/css/font.css">
+    <link rel="stylesheet" href="../../assets/css/xadmin.css">
+</head>
+<body>
+<div class="x-body">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label for="name" class="layui-form-label">
+                <span class="x-red">*</span>角色名称
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="name" name="name" required autocomplete="off" class="layui-input" lay-verify="name">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 10 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">权限内容</label>
+            <div class="layui-input-inline layui-input-400" id="authCheckbox"></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <button class="layui-btn" lay-filter="add" lay-submit>添加</button>
+        </div>
+    </form>
+</div>
+<script src="../../assets/js/vendor/jquery-3.3.1.min.js"></script>
+<script src="../../assets/lib/layui/layui.js" charset="utf-8"></script>
+<script src="../../test/vendor/mock.min.js?_ijt=c74q3tnss1g6q23msqdqki97v5"></script>
+<script src="../../test/connect_test.js"></script>
+<script src="../../assets/js/basic.js"></script>
+<script>
+    layui.use(['form', 'layer'], function () {
+        const form = layui.form;
+
+        MuZhi.init();
+
+        form.verify({
+            name (value) {
+                return MuZhi.Verify.chineseName(value, "角色名称", 10);
+            }
+        });
+
+        MuZhi.View.generateAuthCheckbox(
+            document.getElementById("authCheckbox"),
+            JSON.parse(sessionStorage.getItem("menu")),
+            form
+        );
+
+        form.on('submit(add)', function (data) {
+            MuZhi.Link.connect("addAuth", {
+                data: {
+                    name: data.field.name,
+                    content: MuZhi.View.convertCheckbox(data.field),
+                    account: sessionStorage.getItem("user")
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

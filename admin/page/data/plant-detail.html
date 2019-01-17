@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>查看植物详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
+    <link rel="stylesheet" href="../../assets/css/font.css">
+    <link rel="stylesheet" href="../../assets/css/xadmin.css">
+</head>
+<body>
+<div class="x-body" id="plantDetail">
+    <table class="layui-table">
+        <colgroup>
+            <col width="50">
+            <col width="300">
+            <col>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>属性</th>
+            <th>内容</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>植物名称</td>
+            <td v-text="detail.name"></td>
+        </tr>
+        <tr>
+            <td>植物学名</td>
+            <td v-text="detail.sname"></td>
+        </tr>
+        <tr>
+            <td>植物别名</td>
+            <td v-text="detail.oname"></td>
+        </tr>
+        <tr>
+            <td>所属类别</td>
+            <td v-text="detail.tname"></td>
+        </tr>
+        <tr>
+            <td>植物科属</td>
+            <td v-text="detail.genera"></td>
+        </tr>
+        <tr>
+            <td>产地与分布</td>
+            <td v-text="detail.distribution"></td>
+        </tr>
+        <tr>
+            <td>生物学特性</td>
+            <td v-text="detail.characteristics"></td>
+        </tr>
+        <tr>
+            <td>养护建议</td>
+            <td v-text="detail.advice"></td>
+        </tr>
+        <tr>
+            <td>花语</td>
+            <td v-text="detail.flang"></td>
+        </tr>
+        <tr>
+            <td>适宜温度</td>
+            <td v-text="detail.temperature"></td>
+        </tr>
+        <tr>
+            <td>适宜水份</td>
+            <td v-text="detail.moisture"></td>
+        </tr>
+        <tr>
+            <td>适宜肥力</td>
+            <td v-text="detail.fertility"></td>
+        </tr>
+        <tr>
+            <td>适宜光照</td>
+            <td v-text="detail.light"></td>
+        </tr>
+        <tr>
+            <td>添加日期</td>
+            <td v-text="detail.dateCreate"></td>
+        </tr>
+        <tr>
+            <td>修改日期</td>
+            <td v-text="detail.dateModify"></td>
+        </tr>
+        <tr>
+            <td>修改者</td>
+            <td v-text="detail.modifier"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="../../assets/js/vendor/jquery-3.3.1.min.js"></script>
+<script src="../../assets/lib/layui/layui.js" charset="utf-8"></script>
+<script src="../../assets/js/vendor/vue.min.js"></script>
+<script src="../../test/vendor/mock.min.js?_ijt=c74q3tnss1g6q23msqdqki97v5"></script>
+<script src="../../test/connect_test.js"></script>
+<script src="../../assets/js/basic.js"></script>
+<script>
+    new Vue({
+        el: "#plantDetail",
+        data: {
+            detail: {}
+        },
+        mounted() {
+            const params = MuZhi.Util.getUrlParams(location.search),
+                _this = this;
+
+            MuZhi.init(function () {
+                const layerIndex = MuZhi.Layer.showLoading(1);
+
+                MuZhi.Link.connect("getPlant", {
+                    data: {
+                        id: params["id"]
+                    },
+                    successFn(res) {
+                        if (Number(res.code) === 1) {
+                            _this.detail = res.data.detail
+                        } else {
+                            MuZhi.Layer.warn(res.msg);
+                        }
+                    },
+                    completeFn: function () {
+                        MuZhi.Layer.closeLoading(layerIndex);
+                    }
+                });
+            });
+        }
+    })
+</script>
+</body>
+</html>

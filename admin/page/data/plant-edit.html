@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>植物信息编辑</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
+    <link rel="stylesheet" href="../../assets/css/font.css">
+    <link rel="stylesheet" href="../../assets/css/xadmin.css">
+</head>
+<body>
+<div class="x-body">
+    <form class="layui-form" lay-filter="edit">
+        <div class="layui-form-item layui-hide">
+            <label for="id" class="layui-form-label">植物号</label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="id" name="id" required autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="name" class="layui-form-label">
+                <span class="x-red">*</span>植物名称
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="name" name="name" required autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 12 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="sname" class="layui-form-label">植物学名</label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="sname" name="sname" required autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 20 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="oname" class="layui-form-label">植物别名</label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="oname" name="oname" required autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 48 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="type" class="layui-form-label">
+                <span class="x-red">*</span>所属类别
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <select id="type" name="type" class="layui-select">
+                    <option value="1">一、二年生花卉</option>
+                    <option value="2">宿根花卉</option>
+                    <option value="3">球根花卉</option>
+                    <option value="4">多浆植物</option>
+                    <option value="5">兰科花卉</option>
+                    <option value="6">水生花卉</option>
+                    <option value="7">高山花卉及岩生植物</option>
+                    <option value="8">木本植物</option>
+                    <option value="9">蕨类植物</option>
+                    <option value="10">苔藓植物</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="genera" class="layui-form-label">
+                <span class="x-red">*</span>植物科属
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="genera" name="genera" required autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 16 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="distribution" class="layui-form-label">产地与分布</label>
+            <div class="layui-input-inline layui-input-400">
+                <textarea id="distribution" name="distribution" autocomplete="off" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="characteristics" class="layui-form-label">生物学特性</label>
+            <div class="layui-input-inline layui-input-400">
+                <textarea id="characteristics" name="characteristics" autocomplete="off" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="advice" class="layui-form-label">养护建议</label>
+            <div class="layui-input-inline layui-input-400">
+                <textarea id="advice" name="advice" autocomplete="off" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="flang" class="layui-form-label">花语</label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="flang" name="flang" required autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 16 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="temperature" class="layui-form-label">
+                <span class="x-red">*</span>适宜温度
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="temperature" name="temperature" required autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="moisture" class="layui-form-label">
+                <span class="x-red">*</span>适宜水份
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="moisture" name="moisture" required autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="fertility" class="layui-form-label">
+                <span class="x-red">*</span>适宜肥力
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="fertility" name="fertility" required autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="light" class="layui-form-label">
+                <span class="x-red">*</span>适宜光照
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="light" name="light" required autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <button class="layui-btn" lay-filter="edit" lay-submit>编辑</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="../../assets/js/vendor/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../assets/lib/layui/layui.js" charset="utf-8"></script>
+<script src="../../test/vendor/mock.min.js?_ijt=c74q3tnss1g6q23msqdqki97v5"></script>
+<script src="../../test/connect_test.js"></script>
+<script src="../../assets/js/basic.js"></script>
+<script>
+    layui.use(['form'], function () {
+        const form = layui.form,
+            params = MuZhi.Util.getUrlParams(location.search);
+
+        MuZhi.init();
+        MuZhi.Link.connect("getPlant", {
+            data: {
+                id: params["id"]
+            },
+            successFn (res) {
+                const data = res.data.detail;
+
+                form.val("edit", {
+                    "id": data.id,
+                    "name": data.name,
+                    "tname": data.cname,
+                    "sname": data.sname,
+                    "oname": data.oname,
+                    "genera": data.genera,
+                    "distribution": data.distribution,
+                    "characteristics": data.characteristics,
+                    "advice": data.advice,
+                    "flang": data.flang,
+                    "temperature": data.temperature,
+                    "moisture": data.moisture,
+                    "fertility": data.fertility,
+                    "light": data.light,
+                    "picture": data.picture,
+                    "dateCreate": data.dateCreate,
+                    "dateModify": data.dateModify,
+                    "modifier": data.modifier
+                });
+            }
+        });
+        form.verify({
+            count: function (value) {
+                if (value.length > 6) {
+                    return "超出订单数量范围";
+                }
+            }
+        });
+
+        form.on('submit(edit)', function (data) {
+            MuZhi.Link.connect("editOrder", {
+                data: data.field
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

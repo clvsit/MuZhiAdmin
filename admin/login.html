@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>木直小程序管理平台登录页面</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
+    <link rel="stylesheet" href="assets/css/font.css">
+    <link rel="stylesheet" href="assets/css/xadmin.css">
+</head>
+<body class="login-bg">
+<div class="login layui-anim layui-anim-up">
+    <div class="message">木直小程序管理平台登录页面</div>
+    <div id="darkbannerwrap"></div>
+    <form method="post" class="layui-form">
+        <input name="username" placeholder="用户名" type="text" lay-verify="username" class="layui-input">
+        <hr class="hr15">
+        <input name="password" placeholder="密码" type="password" lay-verify="required" class="layui-input">
+        <hr class="hr15">
+        <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+        <hr class="hr20">
+    </form>
+</div>
+<script type="text/javascript" src="assets/js/vendor/jquery-3.3.1.min.js"></script>
+<script src="assets/lib/layui/layui.js" charset="utf-8"></script>
+<script src="test/vendor/mock.min.js"></script>
+<script src="test/connect_test.js"></script>
+<script src="assets/js/basic.js"></script>
+<script>
+    layui.use('form', function () {
+        const form = layui.form;
+
+        MuZhi.init();
+        form.verify({
+            username (value) {
+                MuZhi.Verify.username(value);
+            }
+        });
+        form.on('submit(login)', function (data) {
+            MuZhi.Link.connect("adminLogin", {
+                data: {
+                	username: btoa(data.field.username),
+                	password: btoa(data.field.password)
+                },
+                successFn (res) {
+                    if (Number(res.code) === 1) {
+                        MuZhi.Layer.msg(res.msg);
+
+                        sessionStorage.setItem("user", res.data.id);
+                        sessionStorage.setItem("name", res.data.name);
+                        setTimeout(() => {
+                            location.href = 'index.html'
+                        }, 2000);
+                    } else {
+                        MuZhi.Layer.warn(res.msg);
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

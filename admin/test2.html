@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div data-token="true"></div>
+<a href="index.html">测试</a>
+<script src="assets/js/vendor/jquery-3.3.1.min.js"></script>
+<script src="test/vendor/mock.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Mock.mock(/http:\/\/test.com\/test/, {
+        //     code: "1",
+        //     msg: "创建用户成功",
+        //     data: {},
+        // });
+        //
+        // var instance = axios.create({
+        //     baseURL: 'https://some-domain.com/api/',
+        //     timeout: 1000,
+        //     headers: {'X-Custom-Header': 'foobar'}
+        // });
+        // instance.defaults.headers.common['Authorization'] = "sdasd";
+        // // 添加一个请求拦截器
+        // axios.interceptors.request.use(function (config) {
+        //     console.log("haha");
+        //     return config;
+        // }, function (error) {
+        //     return Promise.reject(error);
+        // });
+        // instance.get('http://test.com/test')
+        //     .then(function (response) {
+        //         console.log(response);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+        let date = new Date(),
+            format = "YYYY-MM-dd HH:mm:ss",
+            param = {
+                "Y+": date.getFullYear() + "",
+                "M+": date.getMonth() + 1 + "",
+                "d+": date.getDate() + "",
+                "H+": date.getHours() + "",
+                "m+": date.getMinutes() + "",
+                "s+": date.getSeconds() + ""
+            };
+
+        for (const key in param) {
+            if (new RegExp("(" + key + ")").test(format)) {
+                format = format.replace(RegExp.$1,
+                    RegExp.$1.length === 2 ?
+                        (param[key].length === 1 ?
+                            "0" + param[key] : param[key].substr(-2)) :
+                        param[key]);
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>添加植物信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
+    <link rel="stylesheet" href="../../assets/css/font.css">
+    <link rel="stylesheet" href="../../assets/css/xadmin.css">
+</head>
+<body>
+<div class="x-body">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label for="name" class="layui-form-label">
+                <span class="x-red">*</span>植物名称
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="name" name="name" required autocomplete="off" class="layui-input" lay-verify="name">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 12 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="sname" class="layui-form-label">植物学名</label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="sname" name="sname" autocomplete="off" class="layui-input" lay-filter="sname">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 20 个字符（中英文）以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="oname" class="layui-form-label">植物别名</label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="oname" name="oname" autocomplete="off" class="layui-input" lay-filter="oname">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 48 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="type" class="layui-form-label">
+                <span class="x-red">*</span>所属分类
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <select id="type" name="type"></select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="genera" class="layui-form-label">
+                <span class="x-red">*</span>植物科属
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="genera" name="genera" required autocomplete="off" class="layui-input" lay-verify="genera">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 16 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="distribution" class="layui-form-label">产地与分布</label>
+            <div class="layui-input-inline layui-input-400">
+                <textarea id="distribution" name="distribution" autocomplete="off" class="layui-textarea" lay-verify="distribution"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="characteristics" class="layui-form-label">生物学特性</label>
+            <div class="layui-input-inline layui-input-400">
+                <textarea id="characteristics" name="characteristics" autocomplete="off" class="layui-textarea" lay-verify="characteristics"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="advice" class="layui-form-label">养护建议</label>
+            <div class="layui-input-inline layui-input-400">
+                <textarea id="advice" name="advice" autocomplete="off" class="layui-textarea" lay-verify="advice"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="flang" class="layui-form-label">花语</label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="flang" name="flang" autocomplete="off" class="layui-input" lay-filter="flang">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 10 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="temperature" class="layui-form-label">
+                <span class="x-red">*</span>适宜温度
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="temperature" name="temperature" required autocomplete="off" class="layui-input" lay-verify="name">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 10 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="moisture" class="layui-form-label">
+                <span class="x-red">*</span>适宜水份
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="moisture" name="moisture" required autocomplete="off" class="layui-input" lay-verify="name">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 10 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="fertility" class="layui-form-label">
+                <span class="x-red">*</span>适宜肥力
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="fertility" name="fertility" required autocomplete="off" class="layui-input" lay-verify="name">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 10 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label for="light" class="layui-form-label">
+                <span class="x-red">*</span>适宜光照
+            </label>
+            <div class="layui-input-inline layui-input-400">
+                <input type="text" id="light" name="light" required autocomplete="off" class="layui-input" lay-verify="name">
+            </div>
+            <div class="layui-form-mid layui-word-aux">长度限制在 10 个中文以内</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <button class="layui-btn" lay-filter="add" lay-submit>新增</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="../../assets/js/vendor/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../assets/lib/layui/layui.js" charset="utf-8"></script>
+<script src="../../test/vendor/mock.min.js?_ijt=c74q3tnss1g6q23msqdqki97v5"></script>
+<script src="../../test/connect_test.js"></script>
+<script src="../../assets/js/basic.js"></script>
+<script>
+    layui.use(['form'], function () {
+        const form = layui.form,
+            verify = MuZhi.Verify;
+
+        MuZhi.init();
+        MuZhi.View.generateTypeSelect(document.getElementById("type"), JSON.parse(sessionStorage.getItem("plantType")), form);
+
+        form.verify({
+            name: function (value) {
+                return verify.chineseName(value, "植物名称", 12);
+            },
+            sname: function (value) {
+                return verify.lengthRequired(value, "植物学名", 20, true);
+            },
+            oname: function (value) {
+                return verify.chineseName(value, "植物别名", 48);
+            },
+            genera: function (value) {
+                return verify.chineseName(value, "植物科属", 16);
+            },
+            distribution: function (value) {
+                return verify.lengthRequired(value, "产地与分布", 128, true);
+            },
+            characteristics: function (value) {
+                return verify.lengthRequired(value, "生物学特性", 128, true);
+            },
+            advice: function (value) {
+                return verify.lengthRequired(value, "养护建议", 128, true);
+            },
+            flang: function (value) {
+                return verify.lengthRequired(value, "花语", 16, true);
+            }
+        });
+
+        form.on('submit(add)', function (data) {
+            MuZhi.Util.changeType(data.field, "type", "int");
+            data.field["account"] = sessionStorage.getItem("user");
+            console.log(data.field);
+
+            MuZhi.Link.connect("addPlant", {
+                data: data.field
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

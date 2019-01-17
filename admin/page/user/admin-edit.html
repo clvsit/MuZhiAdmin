@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息编辑</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
+    <link rel="stylesheet" href="../../assets/css/font.css">
+    <link rel="stylesheet" href="../../assets/css/xadmin.css">
+</head>
+<body>
+<div class="x-body">
+    <form class="layui-form" lay-filter="edit">
+        <div class="layui-form-item layui-hide">
+            <label for="id" class="layui-form-label">员工号</label>
+            <div class="layui-input-inline">
+                <input type="text" id="id" name="id" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="name" class="layui-form-label">
+                <span class="x-red">*</span>员工姓名
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="name" name="name" required
+                       autocomplete="off" class="layui-input" lay-verify="name">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="email" class="layui-form-label">员工邮箱</label>
+            <div class="layui-input-inline">
+                <input type="text" id="email" name="email" required lay-verify="email"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="phone" class="layui-form-label">手机号码</label>
+            <div class="layui-input-inline">
+                <input type="text" id="phone" name="phone" required lay-verify="phone"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="auth" class="layui-form-label">权限角色</label>
+            <div class="layui-input-inline">
+                <select id="auth" name="auth"></select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <button class="layui-btn" lay-filter="edit" lay-submit>编辑</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="../../assets/js/vendor/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../assets/lib/layui/layui.js" charset="utf-8"></script>
+<script src="../../test/vendor/mock.min.js"></script>
+<script src="../../test/connect_test.js"></script>
+<script src="../../assets/js/basic.js"></script>
+<script>
+    layui.use(['form'], function () {
+        const form = layui.form,
+            params = MuZhi.Util.getUrlParams(location.search);
+
+        MuZhi.init();
+        MuZhi.View.generateAuthSelect(document.getElementById("auth"), JSON.parse(sessionStorage.getItem("auth")), form);
+
+        // console.log(params);
+        form.val("edit", {
+            "id": params["id"],
+            "name": params["name"],
+            "email": params["email"],
+            "phone": params["phone"],
+            "auth": Number(params["auth"])
+        });
+
+        form.verify({
+            name (value) {
+                return MuZhi.Verify.chineseName(value, "员工姓名", 4);
+            }
+        });
+
+        form.on('submit(edit)', function (data) {
+            MuZhi.Util.changeType(data.field, "auth", "int");
+            data.field["account"] = sessionStorage.getItem("user");
+            // console.log(data.field);
+            MuZhi.Link.connect("editEmployee", {
+                data: data.field
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>
