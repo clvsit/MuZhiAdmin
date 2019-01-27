@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>系统配置接口文档 - 木直小程序后台管理系统文档</title>
+  <title>系统配置模块 - 木直小程序后台管理系统文档</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "\u7cfb\u7edf\u914d\u7f6e\u63a5\u53e3\u6587\u6863";
+    var mkdocs_page_name = "\u7cfb\u7edf\u914d\u7f6e\u6a21\u5757";
     var mkdocs_page_input_path = "system.md";
     var mkdocs_page_url = null;
   </script>
@@ -53,9 +53,42 @@
     <a class="" href="..">首页</a>
 	    </li>
           
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">系统配置模块</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">菜单接口模块</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_2">获取所有菜单信息</a></li>
+        
+            <li><a class="toctree-l3" href="#_5">获取菜单列表</a></li>
+        
+            <li><a class="toctree-l3" href="#_8">获取菜单项列表</a></li>
+        
+            <li><a class="toctree-l3" href="#_11">添加菜单信息</a></li>
+        
+            <li><a class="toctree-l3" href="#_14">编辑菜单信息</a></li>
+        
+            <li><a class="toctree-l3" href="#_17">删除菜单信息</a></li>
+        
+            <li><a class="toctree-l3" href="#_20">添加菜单项信息</a></li>
+        
+            <li><a class="toctree-l3" href="#_23">编辑菜单项信息</a></li>
+        
+            <li><a class="toctree-l3" href="#_26">删除菜单项信息</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
             <li class="toctree-l1">
 		
-    <a class="" href="../user/">用户管理</a>
+    <a class="" href="../user/">用户管理模块</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -85,7 +118,7 @@
     
       
     
-    <li>系统配置接口文档</li>
+    <li>系统配置模块</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -95,14 +128,14 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_1">系统配置接口文档</h1>
-<h2 id="_2">获取所有菜单信息</h2>
-<blockquote>
+                <h2 id="_1">菜单接口模块</h2>
+<h3 id="_2">获取所有菜单信息</h3>
 <p>在用户成功登录到后台管理系统时，需要获取所有的菜单信息，用以渲染界面。其次，当页面缓存不存在时，前端会再次主动发起请求以获取菜单信息。</p>
-</blockquote>
-<p>【所有菜单信息】：
-- 菜单列表
-- 菜单项列表</p>
+<p>【所有菜单信息】：</p>
+<ul>
+<li>菜单列表</li>
+<li>菜单项列表</li>
+</ul>
 <h4 id="_3">前端请求</h4>
 <ul>
 <li>请求方式：GET</li>
@@ -168,10 +201,8 @@
 }
 </code></pre>
 
-<h2 id="_5">获取菜单列表</h2>
-<blockquote>
+<h3 id="_5">获取菜单列表</h3>
 <p>获取菜单列表（一级菜单）。</p>
-</blockquote>
 <h4 id="_6">前端请求</h4>
 <ul>
 <li>请求方式：GET</li>
@@ -210,10 +241,8 @@
 }
 </code></pre>
 
-<h2 id="_8">获取菜单项列表</h2>
-<blockquote>
+<h3 id="_8">获取菜单项列表</h3>
 <p>获取菜单项列表（二级菜单）。</p>
-</blockquote>
 <h4 id="_9">前端请求</h4>
 <ul>
 <li>请求方式：GET</li>
@@ -270,10 +299,8 @@
 }
 </code></pre>
 
-<h2 id="_11">添加菜单信息</h2>
-<blockquote>
+<h3 id="_11">添加菜单信息</h3>
 <p>拥有菜单管理权限的用户可以添加新的菜单信息。</p>
-</blockquote>
 <h4 id="_12">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
@@ -307,16 +334,16 @@ cbsak: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 }
 </code></pre>
 
-<p>【操作过程】：
-- 首先将前端传递的<strong>菜单名称</strong>插入到 bmenu 表中。
-- 然后再获取服务器的时间戳和系统日期（符合 nwatch Ndate 字段的要求）。
-- 接着根据不同的接口生成对应的<strong>操作内容</strong>，例如添加菜单信息接口对应的操作内容就是<strong>添加菜单信息</strong>。
-- 最后将时间戳、系统日期、操作内容以及前端传递的用户名称一并插入到 nwatch 表中。</p>
+<p>【操作过程】：</p>
+<ul>
+<li>首先将前端传递的<strong>菜单名称</strong>插入到 bmenu 表中。</li>
+<li>然后再获取服务器的时间戳和系统日期（符合 nwatch Ndate 字段的要求）。</li>
+<li>接着根据不同的接口生成对应的<strong>操作内容</strong>，例如添加菜单信息接口对应的操作内容就是<strong>添加菜单信息</strong>。</li>
+<li>最后将时间戳、系统日期、操作内容以及前端传递的用户名称一并插入到 nwatch 表中。</li>
+</ul>
 <p>【说明】：后续的接口操作过程同<strong>添加菜单信息</strong>。</p>
-<h2 id="_14">编辑菜单信息</h2>
-<blockquote>
+<h3 id="_14">编辑菜单信息</h3>
 <p>拥有菜单管理权限的用户可以编辑已有的菜单信息。</p>
-</blockquote>
 <h4 id="_15">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
@@ -350,10 +377,8 @@ icujw: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 }
 </code></pre>
 
-<h2 id="_17">删除菜单信息</h2>
-<blockquote>
+<h3 id="_17">删除菜单信息</h3>
 <p>拥有菜单管理权限的用户可以删除已有的菜单信息。</p>
-</blockquote>
 <h4 id="_18">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
@@ -387,10 +412,8 @@ naklc: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 </code></pre>
 
 <p>【说明】：需要进行级联删除，将该菜单下的所有菜单项也一并删除。</p>
-<h2 id="_20">添加菜单项信息</h2>
-<blockquote>
+<h3 id="_20">添加菜单项信息</h3>
 <p>拥有菜单管理权限的用户可以添加新的菜单项信息。</p>
-</blockquote>
 <h4 id="_21">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
@@ -425,10 +448,8 @@ yqhms: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 }
 </code></pre>
 
-<h2 id="_23">编辑菜单项信息</h2>
-<blockquote>
+<h3 id="_23">编辑菜单项信息</h3>
 <p>拥有菜单管理权限的用户可以编辑已有的菜单项信息。</p>
-</blockquote>
 <h4 id="_24">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
@@ -464,10 +485,8 @@ xafsj: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 }
 </code></pre>
 
-<h2 id="_26">删除菜单项信息</h2>
-<blockquote>
+<h3 id="_26">删除菜单项信息</h3>
 <p>拥有菜单管理权限的用户可以删除已有的菜单项信息。</p>
-</blockquote>
 <h4 id="_27">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
@@ -504,6 +523,15 @@ xbsha: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../user/" class="btn btn-neutral float-right" title="用户管理模块">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="首页"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
@@ -526,6 +554,10 @@ xbsha: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../user/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
