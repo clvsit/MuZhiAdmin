@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>用户管理接口文档 - 木直小程序后台管理系统文档</title>
+  <title>用户管理 - 木直小程序后台管理系统文档</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "\u7528\u6237\u7ba1\u7406\u63a5\u53e3\u6587\u6863";
+    var mkdocs_page_name = "\u7528\u6237\u7ba1\u7406";
     var mkdocs_page_input_path = "user.md";
     var mkdocs_page_url = null;
   </script>
@@ -50,17 +50,12 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="..">Welcome to MkDocs</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../system/">系统配置接口文档</a>
+    <a class="" href="..">首页</a>
 	    </li>
           
             <li class="toctree-l1 current">
 		
-    <a class="current" href="./">用户管理接口文档</a>
+    <a class="current" href="./">用户管理</a>
     <ul class="subnav">
             
     <li class="toctree-l2"><a href="#_1">用户管理接口文档</a></li>
@@ -89,6 +84,11 @@
     </ul>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../database/">数据库设计</a>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -111,7 +111,7 @@
     
       
     
-    <li>用户管理接口文档</li>
+    <li>用户管理</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -126,9 +126,11 @@
 <blockquote>
 <p>若当前用户拥有权限管理权限，则可以获取后台管理系统的权限信息。</p>
 </blockquote>
-<p>【说明】：
-- 超级管理员：可以分配管理员，且无法被其他管理员识别。超级管理员不存储在数据库中，而是存放到配置文件中，并需要进行加密处理。
-- 管理员：能够管理除管理员身份外的所有权限角色。</p>
+<p>【说明】：</p>
+<ul>
+<li>超级管理员：可以分配管理员，且无法被其他管理员识别。超级管理员不存储在数据库中，而是存放到配置文件中，并需要进行加密处理。</li>
+<li>管理员：能够管理除管理员身份外的所有权限角色。</li>
+</ul>
 <h4 id="_3">前端请求</h4>
 <ul>
 <li>请求方式：GET</li>
@@ -508,8 +510,10 @@ yqjac: &quot;1547471797664&quot;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../database/" class="btn btn-neutral float-right" title="数据库设计">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../system/" class="btn btn-neutral" title="系统配置接口文档"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href=".." class="btn btn-neutral" title="首页"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -535,8 +539,10 @@ yqjac: &quot;1547471797664&quot;
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../system/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../database/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
