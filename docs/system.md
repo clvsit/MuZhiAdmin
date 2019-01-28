@@ -16,7 +16,7 @@
 - 请求示例：无
 
 #### 后台响应
-- 操作视图：view\_menu、view\_menuitem
+- 操作视图：view\_menu\_list、view\_submenu\_list
 - 返回字段：将两张视图的字段全部返回。
 - 响应示例：
 
@@ -89,8 +89,8 @@
 - 请求示例：无
 
 #### 后台响应
-- 操作视图：view\_menu
-- 返回字段：id、name
+- 操作视图：view\_menu\_list
+- 返回字段：id、name、icon
 - 响应示例：
 
 ```JSON
@@ -135,7 +135,7 @@
 - 请求示例：无
 
 #### 后台响应
-- 操作视图：view\_menuitem
+- 操作视图：view\_submenu\_list
 - 返回字段：id、name、url、belong、menu
 - 响应示例：
 
