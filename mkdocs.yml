@@ -1,0 +1,7 @@
+site_name: 木直小程序后台管理系统文档
+nav:
+  - 首页: index.md
+  - 系统配置模块: system.md
+  - 用户管理模块: user.md
+  - 数据库设计: database.md
+theme: readthedocs

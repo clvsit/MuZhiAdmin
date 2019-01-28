@@ -16,8 +16,8 @@
             <table @click="request($event)" class="layui-table">
                 <thead>
                 <tr>
-                    <td @click="request('getMenuList')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i>刷新</td>
-                    <td @click="request('addMenu')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-add-circle"></i>新建</td>
+                    <button @click="request('getMenuList')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i>刷新</button>
+                    <button @click="request('addMenu')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-add-circle"></i>新建</button>
                 </tr>
                 <tr>
                     <th class="layui-hide">菜单号</th>
@@ -44,8 +44,8 @@
             <table @click="request($event)" class="layui-table">
                 <thead>
                 <tr>
-                    <td @click="request('getMenuItem')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i>刷新</td>
-                    <td @click="request('addMenuItem')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-add-circle"></i>新建</td>
+                    <button @click="request('getMenuItem')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i>刷新</button>
+                    <button @click="request('addMenuItem')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-add-circle"></i>新建</button>
                 </tr>
                 <tr>
                     <th class="layui-hide">菜单项号</th>

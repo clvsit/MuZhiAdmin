@@ -38,10 +38,10 @@
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
-                    <li v-for="menuItem in menu.subMenu">
-                        <a :_href="menuItem.url">
+                    <li v-for="subMenuItem in menu.subMenu">
+                        <a :_href="subMenuItem.url">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite v-text="menuItem.name"></cite>
+                            <cite v-text="subMenuItem.name"></cite>
                         </a>
                     </li>
                 </ul>
@@ -92,7 +92,7 @@
                     if (menuIndex === -1) {
                         menus.push({
                             id: menu.belong,
-                            name: menu.bName,
+                            name: menu.menu,
                             icon: menu.icon,
                             subMenu: []
                         })
@@ -100,7 +100,7 @@
                 } else {
                     menus.push({
                         id: menu.belong,
-                        name: menu.bName,
+                        name: menu.menu,
                         icon: menu.icon,
                         subMenu: []
                     });

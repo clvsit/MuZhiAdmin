@@ -60,35 +60,35 @@ const menuList = [
         url: "./page/user/auth-list.html",
         belong: 1,
         icon: "&#xe6b8;",
-        bName: "用户管理"
+        menu: "用户管理"
     }, {
         id: 2,
         name: "员工列表",
         url: "./page/user/admin-list.html",
         belong: 1,
         icon: "&#xe6b8;",
-        bName: "用户管理"
+        menu: "用户管理"
     }, {
         id: 3,
         name: "植物分类",
         url: "./page/data/type-list.html",
         belong: 2,
         icon: "&#xe723;",
-        bName: "数据管理"
+        menu: "数据管理"
     }, {
         id: 4,
         name: "植物数据",
         url: "./page/data/plant-list.html",
         belong: 2,
         icon: "&#xe723;",
-        bName: "数据管理"
+        menu: "数据管理"
     }, {
         id: 5,
         name: "菜单管理",
         url: "./page/system/menu.html",
         belong: 3,
         icon: "&#xe6da;",
-        bName: "系统配置"
+        menu: "系统配置"
     }
 ];
 sessionStorage.setItem("auth", JSON.stringify(auth));
