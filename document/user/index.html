@@ -63,7 +63,7 @@
     <a class="current" href="./">用户管理模块</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#_1">用户管理接口文档</a></li>
+    <li class="toctree-l2"><a href="#_1">权限管理模块</a></li>
     
         <ul>
         
@@ -75,13 +75,20 @@
         
             <li><a class="toctree-l3" href="#_11">删除权限信息</a></li>
         
-            <li><a class="toctree-l3" href="#_14">获取员工信息</a></li>
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#_14">员工管理模块</a></li>
+    
+        <ul>
         
-            <li><a class="toctree-l3" href="#_17">添加员工信息</a></li>
+            <li><a class="toctree-l3" href="#_15">获取员工信息</a></li>
         
-            <li><a class="toctree-l3" href="#_20">编辑员工信息</a></li>
+            <li><a class="toctree-l3" href="#_18">添加员工信息</a></li>
         
-            <li><a class="toctree-l3" href="#_23">删除员工信息</a></li>
+            <li><a class="toctree-l3" href="#_21">编辑员工信息</a></li>
+        
+            <li><a class="toctree-l3" href="#_24">删除员工信息</a></li>
         
         </ul>
     
@@ -126,11 +133,9 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_1">用户管理接口文档</h1>
+                <h1 id="_1">权限管理模块</h1>
 <h2 id="_2">获取权限角色信息</h2>
-<blockquote>
 <p>若当前用户拥有权限管理权限，则可以获取后台管理系统的权限信息。</p>
-</blockquote>
 <p>【说明】：</p>
 <ul>
 <li>超级管理员：可以分配管理员，且无法被其他管理员识别。超级管理员不存储在数据库中，而是存放到配置文件中，并需要进行加密处理。</li>
@@ -194,9 +199,7 @@
 
 <p>【说明】：由于权限表存储的权限形式为 “1|2”，因此在表连接的时候非常难以处理，直接在页面显示 “1|2” 肯定是不行，需要通过一种转换将 "1|2" 转换为对应的内容。这部分内容如果后台可以处理，就由后台来处理，要是麻烦的话，就让前台来实现。</p>
 <h2 id="_5">添加权限信息</h2>
-<blockquote>
 <p>拥有用户管理权限的用户可以添加新的权限角色为信息。</p>
-</blockquote>
 <h4 id="_6">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
@@ -231,16 +234,16 @@ wicha: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 }
 </code></pre>
 
-<p>【操作过程】：
-- 首先将前端传递的<strong>角色名称</strong>插入到 pauth 表中。
-- 然后再获取服务器的时间戳和系统日期（符合 nwatch Ndate 字段的要求）。
-- 接着根据不同的接口生成对应的<strong>操作内容</strong>，例如添加菜单信息接口对应的操作内容就是<strong>添加权限信息</strong>。
-- 最后将时间戳、系统日期、操作内容以及前端传递的用户名称一并插入到 nwatch 表中。</p>
+<p>【操作过程】：</p>
+<ul>
+<li>首先将前端传递的<strong>角色名称</strong>插入到 pauth 表中。</li>
+<li>然后再获取服务器的时间戳和系统日期（符合 nwatch Ndate 字段的要求）。</li>
+<li>接着根据不同的接口生成对应的<strong>操作内容</strong>，例如添加菜单信息接口对应的操作内容就是<strong>添加权限信息</strong>。</li>
+<li>最后将时间戳、系统日期、操作内容以及前端传递的用户名称一并插入到 nwatch 表中。</li>
+</ul>
 <p>【说明】：后续的接口操作过程同<strong>添加权限信息</strong>。</p>
 <h2 id="_8">编辑权限信息</h2>
-<blockquote>
 <p>拥有用户管理权限的用户可以编辑已有的权限信息。</p>
-</blockquote>
 <h4 id="_9">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
@@ -277,9 +280,7 @@ ahsjs: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 
 <p>【注意】：需要更新 pauth 记录的<strong>修改日期</strong>和<strong>修改人</strong>两个字段的值。修改日期取当前系统时间，修改人则由前端提供的<strong>用户账号</strong>。</p>
 <h2 id="_11">删除权限信息</h2>
-<blockquote>
 <p>拥有用户管理权限的用户可以删除已有的权限信息。</p>
-</blockquote>
 <h4 id="_12">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
@@ -313,15 +314,16 @@ fhsja: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 </code></pre>
 
 <p>【说明】：当删除指定的权限角色之后，需要将分配该权限角色的所有用户的权限角色设置为未激活（kadmin 的 Bauth 字符设置为 2）。</p>
-<h2 id="_14">获取员工信息</h2>
-<blockquote>
+<h1 id="_14">员工管理模块</h1>
+<h2 id="_15">获取员工信息</h2>
 <p>若当前用户拥有权限管理权限，则可以获取后台管理系统的员工信息。</p>
-</blockquote>
 <p><img alt="获取员工信息" src="https://i.imgur.com/uBt3D4s.png" /></p>
-<p>【说明】：
-- 超级管理员：可以查看和管理除自身以外的所有员工信息，包括管理员。
-- 拥有用户管理权限的员工：可以查看和管理除超级管理员和管理员之外的所有员工信息。</p>
-<h4 id="_15">前端请求</h4>
+<p>【说明】：</p>
+<ul>
+<li>超级管理员：可以查看和管理除自身以外的所有员工信息，包括管理员。</li>
+<li>拥有用户管理权限的员工：可以查看和管理除超级管理员和管理员之外的所有员工信息。</li>
+</ul>
+<h4 id="_16">前端请求</h4>
 <ul>
 <li>请求方式：GET</li>
 <li>请求地址：/admin/employee/get</li>
@@ -337,16 +339,20 @@ twyiq: 0
 jkams: 20
 </code></pre>
 
-<p>【说明-检索条件】：
-- -1：没有检索条件
-- 0：员工工号
-- 1：员工姓名
-- 2：手机号码
-- 3：登录人工号</p>
-<p>【说明-权限角色】：
-- -1：所有角色
-- 具体数字：对应角色</p>
-<h4 id="_16">后台响应</h4>
+<p>【说明-检索条件】：</p>
+<ul>
+<li>-1：没有检索条件</li>
+<li>0：员工工号</li>
+<li>1：员工姓名</li>
+<li>2：手机号码</li>
+<li>3：登录人工号</li>
+</ul>
+<p>【说明-权限角色】：</p>
+<ul>
+<li>-1：所有角色</li>
+<li>具体数字：对应角色</li>
+</ul>
+<h4 id="_17">后台响应</h4>
 <ul>
 <li>操作视图：view_admin</li>
 <li>返回字段：员工工号、员工姓名、员工邮箱、手机号码、权限号、权限角色名称、登录日期、登录人。</li>
@@ -382,12 +388,10 @@ jkams: 20
 </code></pre>
 
 <p>【说明】：返回示例使用 mock.js 自动生成，具体数据可参考如下图。</p>
-<h2 id="_17">添加员工信息</h2>
-<blockquote>
+<h2 id="_18">添加员工信息</h2>
 <p>拥有用户管理权限的用户可以添加新的员工信息。</p>
-</blockquote>
 <p><img alt="添加员工信息" src="https://i.imgur.com/dTU12s2.png" /></p>
-<h4 id="_18">前端请求</h4>
+<h4 id="_19">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/admin/employee/add</li>
@@ -403,7 +407,7 @@ cjiqs: &quot;1547471797664&quot;
 </code></pre>
 
 <p>【说明】：员工账号需要进行加密和解密。前端会进行 base64 加密，后台在收到后对其进行解密。</p>
-<h4 id="_19">后台响应</h4>
+<h4 id="_20">后台响应</h4>
 <ul>
 <li>操作数据表：kadmin、nwatch</li>
 <li>返回字段：无</li>
@@ -424,19 +428,21 @@ cjiqs: &quot;1547471797664&quot;
 }
 </code></pre>
 
-<p>【操作过程-kadmin】：
-- 将前端传递的参数依次插入到 kadmin 表的指定字段，登录日期取当前系统时间（注意格式），登录人则填写前端传递的“操作者账号”。</p>
-<p>【操作过程-nwatch】：
-- 先获取服务器的时间戳和系统日期（符合 nwatch Ndate 字段的要求）。
-- 接着根据不同的接口生成对应的<strong>操作内容</strong>，例如添加员工信息接口对应的操作内容就是<strong>添加员工信息</strong>。
-- 最后将时间戳、系统日期、操作内容以及前端传递的用户名称一并插入到 nwatch 表中。</p>
+<p>【操作过程-kadmin】：</p>
+<ul>
+<li>将前端传递的参数依次插入到 kadmin 表的指定字段，登录日期取当前系统时间（注意格式），登录人则填写前端传递的“操作者账号”。</li>
+</ul>
+<p>【操作过程-nwatch】：</p>
+<ul>
+<li>先获取服务器的时间戳和系统日期（符合 nwatch Ndate 字段的要求）。</li>
+<li>接着根据不同的接口生成对应的<strong>操作内容</strong>，例如添加员工信息接口对应的操作内容就是<strong>添加员工信息</strong>。</li>
+<li>最后将时间戳、系统日期、操作内容以及前端传递的用户名称一并插入到 nwatch 表中。</li>
+</ul>
 <p>【说明】：后续的接口操作过程同<strong>添加员工信息</strong>。</p>
-<h2 id="_20">编辑员工信息</h2>
-<blockquote>
+<h2 id="_21">编辑员工信息</h2>
 <p>拥有用户管理权限的用户可以编辑已有员工的信息。</p>
-</blockquote>
 <p><img alt="编辑员工信息" src="https://i.imgur.com/vaQoiw4.png" /></p>
-<h4 id="_21">前端请求</h4>
+<h4 id="_22">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/admin/employee/edit</li>
@@ -451,7 +457,7 @@ cnakv: 1
 jqscm: &quot;1547471797664&quot;
 </code></pre>
 
-<h4 id="_22">后台响应</h4>
+<h4 id="_23">后台响应</h4>
 <ul>
 <li>操作数据表：kadmin、nwatch</li>
 <li>返回字段：无</li>
@@ -472,12 +478,10 @@ jqscm: &quot;1547471797664&quot;
 }
 </code></pre>
 
-<h2 id="_23">删除员工信息</h2>
-<blockquote>
+<h2 id="_24">删除员工信息</h2>
 <p>拥有用户管理权限的用户可以删除已有的员工信息。</p>
-</blockquote>
 <p><img alt="删除员工信息" src="https://i.imgur.com/Ob2of0O.jpg" /></p>
-<h4 id="_24">前端请求</h4>
+<h4 id="_25">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/admin/employee/del</li>
@@ -488,7 +492,7 @@ jqscm: &quot;1547471797664&quot;
 yqjac: &quot;1547471797664&quot;
 </code></pre>
 
-<h4 id="_25">后台响应</h4>
+<h4 id="_26">后台响应</h4>
 <ul>
 <li>操作数据表：kadmin、nwatch</li>
 <li>返回字段：无</li>
