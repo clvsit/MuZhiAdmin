@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>个人信息页面</title>
@@ -10,17 +10,44 @@
     <link rel="stylesheet" href="assets/css/xadmin.css">
 </head>
 <body>
+<div class="x-nav">
+    <button @click="request('getAll')" class="layui-btn x-right"><i class="layui-icon layui-icon-password"></i>修改密码</button>
+</div>
 <div class="x-body layui-anim layui-anim-up" id="welcome">
-
+    <!--<fieldset class="layui-elem-field">-->
+    <!--</fieldset>-->
+    <!--<fieldset class="layui-elem-field">-->
+        <!--<legend>个人信息</legend>-->
+        <!--<div class="layui-field-box">-->
+            <!--<table class="layui-table" lay-skin="line">-->
+                <!--<tbody>-->
+                <!--<tr>-->
+                    <!--<td>木直小程序管理平台 v1.0 测试版正式测试运营</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+        <!--</div>-->
+    <!--</fieldset>-->
     <fieldset class="layui-elem-field">
-    </fieldset>
-    <fieldset class="layui-elem-field">
-        <legend>系统通知</legend>
+        <legend>个人信息</legend>
         <div class="layui-field-box">
-            <table class="layui-table" lay-skin="line">
+            <table class="layui-table">
                 <tbody>
                 <tr>
-                    <td >木直小程序管理平台 v1.0 测试版正式测试运营</td>
+                    <td class="width-200">姓名</td>
+                    <td>陈煦</td>
+                </tr>
+                <tr>
+                    <td>邮箱</td>
+                    <td>cexu661712@163.com</td>
+                </tr>
+                <tr>
+                    <td>手机号码</td>
+                    <td>17826857056</td>
+                </tr>
+                <tr>
+                    <td>权限角色</td>
+                    <td>管理员</td>
                 </tr>
                 </tbody>
             </table>

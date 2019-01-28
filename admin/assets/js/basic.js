@@ -53,6 +53,44 @@ const plantType = [
         name: "苔藓植物"
     }
 ];
+const menuList = [
+    {
+        id: 1,
+        name: "权限管理",
+        url: "./page/user/auth-list.html",
+        belong: 1,
+        icon: "&#xe6b8;",
+        bName: "用户管理"
+    }, {
+        id: 2,
+        name: "员工列表",
+        url: "./page/user/admin-list.html",
+        belong: 1,
+        icon: "&#xe6b8;",
+        bName: "用户管理"
+    }, {
+        id: 3,
+        name: "植物分类",
+        url: "./page/data/type-list.html",
+        belong: 2,
+        icon: "&#xe723;",
+        bName: "数据管理"
+    }, {
+        id: 4,
+        name: "植物数据",
+        url: "./page/data/plant-list.html",
+        belong: 2,
+        icon: "&#xe723;",
+        bName: "数据管理"
+    }, {
+        id: 5,
+        name: "菜单管理",
+        url: "./page/system/menu.html",
+        belong: 3,
+        icon: "&#xe6da;",
+        bName: "系统配置"
+    }
+];
 sessionStorage.setItem("auth", JSON.stringify(auth));
 sessionStorage.setItem("menu", JSON.stringify(menu));
 sessionStorage.setItem("plantType", JSON.stringify(plantType));
@@ -121,10 +159,11 @@ const MuZhi = {
             let auth = [];
 
             for (const key in data) {
-
-                // 寻找与权限相关的内容
-                if (/auth_*/.test(key)) {
-                    auth.push(key.replace("auth_", ""));
+                if (data.hasOwnProperty(key)) {
+                    // 寻找与权限相关的内容
+                    if (/auth_*/.test(key)) {
+                        auth.push(key.replace("auth_", ""));
+                    }
                 }
             }
             return auth.join("|");
@@ -149,7 +188,7 @@ const MuZhi = {
         /**
          * 生成植物分类下拉框
          * @param SelectDom 下拉框 DOM 对象
-         * @param authData  植物分类数据
+         * @param typeData  植物分类数据
          * @param form      layui 表单对象
          */
         generateTypeSelect(SelectDom, typeData, form) {
@@ -176,6 +215,25 @@ const MuZhi = {
             });
             SelectDom.innerHTML = select_str;
             form.render("select");
+        },
+
+        /**
+         * 生成菜单图标单选框
+         * @param radioDom  单选框 DOM 对象
+         * @param iconData  图标数据
+         * @param form      layui 表单对象
+         */
+        generateIconRadio (radioDom, iconData, form) {
+            let radio_str = "";
+
+            iconData.forEach(item => {
+                radio_str += "<li>" +
+                    "<i class='icon iconfont'>" + item.code + "</i>" +
+                    "<input type='radio' value='" + item.code + "' name='icon' class='layui-input' checked />" +
+                    "</li>";
+            });
+            radioDom.innerHTML = radio_str;
+            form.render("radio");
         }
     },
 
@@ -584,7 +642,7 @@ MuZhi.Link.urls.getUserList = function () {
 /**
  * 用户管理：创建用户
  */
-MuZhi.Link.urls.addEmployee = function (data) {
+MuZhi.Link.urls.addEmployee = function () {
     return {
         type: "post",
         url: "admin/user/add",
@@ -638,10 +696,14 @@ MuZhi.Link.urls.getPlantType = function () {
 /**
  * 数据管理：新增植物分类
  */
-MuZhi.Link.urls.addPlantType = function () {
+MuZhi.Link.urls.addPlantType = function (data) {
     return {
         type: "post",
         url: "data/plant/type/add",
+        data: {
+            "uqish": data.name,
+            "qojsd": data.brief
+        }
     }
 };
 
@@ -652,6 +714,9 @@ MuZhi.Link.urls.editPlantType = function () {
     return {
         type: "post",
         url: "data/plant/type/edit",
+        data: {
+
+        }
     }
 };
 

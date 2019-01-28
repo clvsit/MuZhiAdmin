@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>分类信息编辑</title>
@@ -27,6 +27,16 @@
             </div>
             <div class="layui-form-mid layui-word-aux">长度限制在 8 个中文以内</div>
         </div>
+        <div class="layui-form-item" id="icon">
+            <label for="icon" class="layui-form-label">
+                <span class="x-red">*</span>菜单图标
+            </label>
+            <div class="layui-input-inline layui-input-800">
+                <ul class="icon-lists clear" id="iconList">
+                    <!-- 自动生成 -->
+                </ul>
+            </div>
+        </div>
         <div class="layui-form-item">
             <label class="layui-form-label"></label>
             <button class="layui-btn" lay-filter="edit" lay-submit>编辑</button>
@@ -45,9 +55,13 @@
 
         MuZhi.init();
 
-        form.val("form", {
-            "id": params["id"],
-            "name": params["name"]
+        $.getJSON("../../assets/config.json", function (resp) {
+            MuZhi.View.generateIconRadio(document.getElementById("iconList"), resp.icon, form);
+            form.val("form", {
+                "id": params["id"],
+                "name": params["name"],
+                "icon": params["icon"]
+            });
         });
 
         form.verify({
@@ -55,6 +69,10 @@
                 MuZhi.Verify.chineseName(value, "菜单名称", 8);
             }
         });
+
+
+
+
 
         form.on('submit(edit)', function (data) {
             console.log(data.field);

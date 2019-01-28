@@ -277,10 +277,16 @@ Mock.mock(/http:\/\/test.com\/system\/menu\/getAll\?*?/, {
         "menuList": [
             {
                 "id": 1,
-                "name": "用户管理"
+                "name": "用户管理",
+                "icon": "&#xe6b8;"
             }, {
                 "id": 2,
-                "name": "数据管理"
+                "name": "数据管理",
+                "icon": "&#xe723;"
+            }, {
+                "id": 3,
+                "name": "系统配置",
+                "icon": "&#xe6da;"
             }
         ],
         "menuItem": [
@@ -323,10 +329,16 @@ Mock.mock(/http:\/\/test.com\/system\/menu\/get\?*?/, {
         "menuList": [
             {
                 "id": 1,
-                "name": "用户管理"
+                "name": "用户管理",
+                "icon": "&#xe6b8;"
             }, {
                 "id": 2,
-                "name": "数据管理"
+                "name": "数据管理",
+                "icon": "&#xe723;"
+            }, {
+                "id": 3,
+                "name": "系统配置",
+                "icon": "&#xe6da;"
             }
         ]
     }

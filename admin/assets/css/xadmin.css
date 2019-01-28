@@ -506,10 +506,28 @@ table th, table td {
 .layui-input-400 {
     width: 400px !important;
 }
+.layui-input-800 {
+    width: 800px !important;
+}
 .color-red {
     color: red;
 }
 .x-nav .layui-btn {
     float: right;
     margin-left: 20px;
+}
+.width-200 {
+    width: 200px !important;
+}
+.icon-lists li {
+    float: left;
+    width: 30px;
+    height: 60px;
+    margin: 5px;
+    list-style: none !important;
+}
+.icon-lists .icon {
+    font-size: 21px;
+    line-height: 1;
+    color: #333;
 }

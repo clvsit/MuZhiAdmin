@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>菜单管理</title>
@@ -11,19 +11,19 @@
 </head>
 <body>
 <div id="auth">
-
     <div class="x-body">
         <div class="layui-col-md4">
             <table @click="request($event)" class="layui-table">
                 <thead>
                 <tr>
-                    <button @click="request('getMenuList')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i>刷新</button>
-                    <button @click="request('addMenu')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-add-circle"></i>新建</button>
+                    <td @click="request('getMenuList')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i>刷新</td>
+                    <td @click="request('addMenu')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-add-circle"></i>新建</td>
                 </tr>
                 <tr>
                     <th class="layui-hide">菜单号</th>
                     <th>序号</th>
                     <th>菜单名称</th>
+                    <th>菜单图标</th>
                     <th>操作</th>
                 </thead>
                 <tbody>
@@ -31,6 +31,7 @@
                     <td class="layui-hide" v-text="item.id"></td>
                     <td v-text="index + 1"></td>
                     <td v-text="item.name"></td>
+                    <td v-text="item.icon"></td>
                     <td class="td-manage">
                         <a title="编辑"><i class="layui-icon" data-type="editMenu">&#xe642;</i></a>
                         <a title="删除"><i class="layui-icon" data-type="deleteMenu">&#xe640;</i></a>
@@ -43,8 +44,8 @@
             <table @click="request($event)" class="layui-table">
                 <thead>
                 <tr>
-                    <button @click="request('getMenuItem')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i>刷新</button>
-                    <button @click="request('addMenuItem')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-add-circle"></i>新建</button>
+                    <td @click="request('getMenuItem')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i>刷新</td>
+                    <td @click="request('addMenuItem')" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary"><i class="layui-icon layui-icon-add-circle"></i>新建</td>
                 </tr>
                 <tr>
                     <th class="layui-hide">菜单项号</th>
@@ -181,7 +182,8 @@
 
                     MuZhi.Layer.open("编辑菜单信息", "./menu-edit.html?" +
                         "id=" + $tds[0].innerText +
-                        "&name=" + $tds[2].innerText
+                        "&name=" + $tds[2].innerText +
+                        "&icon=" + $tds[3].innerText
                     );
                 }
                 // 编辑菜单项信息

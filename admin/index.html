@@ -6,7 +6,7 @@
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <!--<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>-->
     <link rel="stylesheet" href="assets/css/font.css">
     <link rel="stylesheet" href="assets/css/xadmin.css">
 </head>
@@ -18,9 +18,9 @@
     </div>
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
-            <a href="javascript:;" id="name"></a>
+            <a href="javascript:" id="name"></a>
             <dl class="layui-nav-child">
-                <dd><a onclick="MuZhi.Layer.open('个人信息','http://www.baidu.com')">个人信息</a></dd>
+                <dd><a onclick="MuZhi.Layer.open('个人信息','person.html')">个人信息</a></dd>
                 <dd><a href="./login.html">切换帐号</a></dd>
                 <dd><a onclick="window.close();">退出</a></dd>
             </dl>
@@ -28,61 +28,20 @@
         <!--<li class="layui-nav-item to-index"><a href="/orderManagement">前台首页</a></li>-->
     </ul>
 </div>
-<div class="left-nav">
+<div class="left-nav" id="index">
     <div id="side-nav">
         <ul id="nav">
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6b8;</i>
-                    <cite>用户管理</cite>
+            <li v-for="menu in menuList">
+                <a href="javascript:">
+                    <i class="iconfont" v-html="menu.icon"></i>
+                    <cite v-text="menu.name"></cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
-                    <li>
-                        <a _href="./page/user/auth-list.html">
+                    <li v-for="menuItem in menu.subMenu">
+                        <a :_href="menuItem.url">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>权限管理</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="./page/user/admin-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>员工列表</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe723;</i>
-                    <cite>数据管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="./page/data/type-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>植物分类</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="./page/data/plant-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>植物列表</cite>
-                        </a>
-                    </li>
-                </ul>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6da;</i>
-                    <cite>系统配置</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="./page/system/menu.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>菜单管理</cite>
+                            <cite v-text="menuItem.name"></cite>
                         </a>
                     </li>
                 </ul>
@@ -104,16 +63,63 @@
 </div>
 <div class="page-content-bg"></div>
 <div class="footer">
-    <div class="copyright">Copyright ©2017 CLVSIT All Rights Reserved</div>
+    <div class="copyright">Copyright ©2019 CLVSIT All Rights Reserved</div>
 </div>
 <script src="assets/js/vendor/jquery-3.3.1.min.js"></script>
 <script src="assets/lib/layui/layui.js" charset="utf-8"></script>
+<script src="assets/js/vendor/vue.min.js"></script>
 <script src="assets/js/xadmin.js"></script>
 <script src="assets/js/basic.js"></script>
 <script>
-    $(document).ready(function () {
-        $("#name").text(sessionStorage.getItem("name"));
-    })
+    new Vue({
+        el: "#index",
+        data: {
+            menuList: menuList
+        },
+        mounted () {
+            $("#name").text(sessionStorage.getItem("name"));
+
+            let menus = [];
+
+            for (let i = 0, len = menuList.length; i < len; i++) {
+                const menu = menuList[i];
+
+                if (menus.length) {
+                    const menuIndex = menus.findIndex(item => {
+                        return item.id === menu.belong;
+                    });
+
+                    if (menuIndex === -1) {
+                        menus.push({
+                            id: menu.belong,
+                            name: menu.bName,
+                            icon: menu.icon,
+                            subMenu: []
+                        })
+                    }
+                } else {
+                    menus.push({
+                        id: menu.belong,
+                        name: menu.bName,
+                        icon: menu.icon,
+                        subMenu: []
+                    });
+                }
+
+                menus.forEach(item => {
+                    if (item.id === menu.belong) {
+                        item.subMenu.push({
+                            id: menu.id,
+                            name: menu.name,
+                            url: menu.url
+                        });
+                    }
+                });
+            }
+            this.menuList = menus;
+            console.log(menus);
+        }
+    });
 </script>
 </body>
 </html>

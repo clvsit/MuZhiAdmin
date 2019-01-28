@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>添加菜单信息</title>
@@ -21,6 +21,16 @@
             </div>
             <div class="layui-form-mid layui-word-aux">长度限制在 8 个中文以内</div>
         </div>
+        <div class="layui-form-item" id="icon">
+            <label for="icon" class="layui-form-label">
+                <span class="x-red">*</span>菜单图标
+            </label>
+            <div class="layui-input-inline layui-input-800">
+                <ul class="icon-lists clear" id="iconList">
+                    <!-- 自动生成 -->
+                </ul>
+            </div>
+        </div>
         <div class="layui-form-item">
             <label class="layui-form-label"></label>
             <button class="layui-btn" lay-filter="add" lay-submit>添加</button>
@@ -37,6 +47,10 @@
         const form = layui.form;
 
         MuZhi.init();
+
+        $.getJSON("../../assets/config.json", function (resp) {
+            MuZhi.View.generateIconRadio(document.getElementById("iconList"), resp.icon, form);
+        });
 
         form.verify({
             name: function (value) {
