@@ -58,7 +58,7 @@
     <a class="current" href="./">系统配置模块</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#_1">菜单接口模块</a></li>
+    <li class="toctree-l2"><a href="#_1">系统配置接口文档</a></li>
     
         <ul>
         
@@ -128,9 +128,12 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="_1">菜单接口模块</h2>
-<h3 id="_2">获取所有菜单信息</h3>
+                <h1 id="_1">系统配置接口文档</h1>
+<p>【说明】：增删改操作需要记录当前操作信息，形式如“谁在什么时候做了什么”。因此，后台需要从 token 中取出用户账号，测试过程可以自行先用缺省值来代替。</p>
+<h2 id="_2">获取所有菜单信息</h2>
+<blockquote>
 <p>在用户成功登录到后台管理系统时，需要获取所有的菜单信息，用以渲染界面。其次，当页面缓存不存在时，前端会再次主动发起请求以获取菜单信息。</p>
+</blockquote>
 <p>【所有菜单信息】：</p>
 <ul>
 <li>菜单列表</li>
@@ -157,10 +160,16 @@
         &quot;menuList&quot;: [
             {
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;用户管理&quot;
+                &quot;name&quot;: &quot;用户管理&quot;,
+                &quot;icon&quot;: &quot;&amp;#xe6b8;&quot;
             }, {
                 &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;数据管理&quot;
+                &quot;name&quot;: &quot;数据管理&quot;,
+                &quot;icon&quot;: &quot;&amp;#xe723;&quot;
+            }, {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;系统配置&quot;,
+                &quot;icon&quot;: &quot;&amp;#xe6da;&quot;
             }
         ],
         &quot;menuItem&quot;: [
@@ -201,8 +210,10 @@
 }
 </code></pre>
 
-<h3 id="_5">获取菜单列表</h3>
+<h2 id="_5">获取菜单列表</h2>
+<blockquote>
 <p>获取菜单列表（一级菜单）。</p>
+</blockquote>
 <h4 id="_6">前端请求</h4>
 <ul>
 <li>请求方式：GET</li>
@@ -224,10 +235,16 @@
         &quot;menuList&quot;: [
             {
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;用户管理&quot;
+                &quot;name&quot;: &quot;用户管理&quot;,
+                &quot;icon&quot;: &quot;&amp;#xe6b8;&quot;
             }, {
                 &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;数据管理&quot;
+                &quot;name&quot;: &quot;数据管理&quot;,
+                &quot;icon&quot;: &quot;&amp;#xe723;&quot;
+            }, {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;系统配置&quot;,
+                &quot;icon&quot;: &quot;&amp;#xe6da;&quot;
             }
         ]
     }
@@ -241,8 +258,10 @@
 }
 </code></pre>
 
-<h3 id="_8">获取菜单项列表</h3>
+<h2 id="_8">获取菜单项列表</h2>
+<blockquote>
 <p>获取菜单项列表（二级菜单）。</p>
+</blockquote>
 <h4 id="_9">前端请求</h4>
 <ul>
 <li>请求方式：GET</li>
@@ -299,20 +318,21 @@
 }
 </code></pre>
 
-<h3 id="_11">添加菜单信息</h3>
+<h2 id="_11">添加菜单信息</h2>
+<blockquote>
 <p>拥有菜单管理权限的用户可以添加新的菜单信息。</p>
+</blockquote>
 <h4 id="_12">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/system/menu/add</li>
-<li>请求参数：菜单名称（jwush）、用户账号（cbsak）</li>
+<li>请求参数：菜单名称（jwush）、菜单图标（jqklc）</li>
 <li>请求示例：</li>
 </ul>
 <pre><code>jwush: &quot;用户管理&quot;
-cbsak: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
+jqklc: &quot;&amp;#xe6b8;&quot;
 </code></pre>
 
-<p>【说明】：用户账号需要进行加密和解密。前端会进行 base64 加密，后台在收到后对其进行解密。</p>
 <h4 id="_13">后台响应</h4>
 <ul>
 <li>操作数据表：bmenu、nwatch</li>
@@ -336,24 +356,26 @@ cbsak: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 
 <p>【操作过程】：</p>
 <ul>
-<li>首先将前端传递的<strong>菜单名称</strong>插入到 bmenu 表中。</li>
+<li>首先将前端传递的<strong>菜单名称</strong>和<strong>菜单图标</strong>插入到 bmenu 表中。</li>
 <li>然后再获取服务器的时间戳和系统日期（符合 nwatch Ndate 字段的要求）。</li>
 <li>接着根据不同的接口生成对应的<strong>操作内容</strong>，例如添加菜单信息接口对应的操作内容就是<strong>添加菜单信息</strong>。</li>
 <li>最后将时间戳、系统日期、操作内容以及前端传递的用户名称一并插入到 nwatch 表中。</li>
 </ul>
 <p>【说明】：后续的接口操作过程同<strong>添加菜单信息</strong>。</p>
-<h3 id="_14">编辑菜单信息</h3>
+<h2 id="_14">编辑菜单信息</h2>
+<blockquote>
 <p>拥有菜单管理权限的用户可以编辑已有的菜单信息。</p>
+</blockquote>
 <h4 id="_15">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/system/menu/edit</li>
-<li>请求参数：菜单号（nwkah）、菜单名称（cnakm）、用户账号（icujw）</li>
+<li>请求参数：菜单号（nwkah）、菜单名称（cnakm）、菜单图标（icujw）</li>
 <li>请求示例：</li>
 </ul>
-<pre><code>nwkah：&quot;1&quot;
+<pre><code>nwkah：1
 cnakm: &quot;用户管理&quot;
-icujw: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
+icujw: &quot;&amp;#xe6b8;&quot;
 </code></pre>
 
 <h4 id="_16">后台响应</h4>
@@ -377,17 +399,18 @@ icujw: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 }
 </code></pre>
 
-<h3 id="_17">删除菜单信息</h3>
+<h2 id="_17">删除菜单信息</h2>
+<blockquote>
 <p>拥有菜单管理权限的用户可以删除已有的菜单信息。</p>
+</blockquote>
 <h4 id="_18">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/system/menu/del</li>
-<li>请求参数：菜单号（uwakc）、用户账号（naklc）</li>
+<li>请求参数：菜单号（uwakc）</li>
 <li>请求示例：</li>
 </ul>
-<pre><code>uwakc：&quot;1&quot;
-naklc: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
+<pre><code>uwakc：1
 </code></pre>
 
 <h4 id="_19">后台响应</h4>
@@ -412,19 +435,20 @@ naklc: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 </code></pre>
 
 <p>【说明】：需要进行级联删除，将该菜单下的所有菜单项也一并删除。</p>
-<h3 id="_20">添加菜单项信息</h3>
+<h2 id="_20">添加菜单项信息</h2>
+<blockquote>
 <p>拥有菜单管理权限的用户可以添加新的菜单项信息。</p>
+</blockquote>
 <h4 id="_21">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/system/menuItem/add</li>
-<li>请求参数：菜单项名称（qkqos）、链接地址（habdm）、所属菜单（nwuqk）、用户账号（yqhms）</li>
+<li>请求参数：菜单项名称（qkqos）、链接地址（habdm）、所属菜单（nwuqk）</li>
 <li>请求示例：</li>
 </ul>
 <pre><code>qkqos: &quot;用户管理&quot;
 habdm：&quot;/url/apath/adad&quot;
 nwuqk：1
-yqhms: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 </code></pre>
 
 <h4 id="_22">后台响应</h4>
@@ -448,20 +472,21 @@ yqhms: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 }
 </code></pre>
 
-<h3 id="_23">编辑菜单项信息</h3>
+<h2 id="_23">编辑菜单项信息</h2>
+<blockquote>
 <p>拥有菜单管理权限的用户可以编辑已有的菜单项信息。</p>
+</blockquote>
 <h4 id="_24">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/system/menuItem/edit</li>
-<li>请求参数：菜单项号（ehayn）、菜单项名称（iqosj）、链接地址（bchsg）、所属菜单（kwnqa）、用户账号（xafsj）</li>
+<li>请求参数：菜单项号（ehayn）、菜单项名称（iqosj）、链接地址（bchsg）、所属菜单（kwnqa）</li>
 <li>请求示例：</li>
 </ul>
-<pre><code>ehayn：&quot;1&quot;
+<pre><code>ehayn：1
 iqosj: &quot;用户管理&quot;
 bchsg：&quot;/path/asda&quot;
 kwnqa：1
-xafsj: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 </code></pre>
 
 <h4 id="_25">后台响应</h4>
@@ -485,17 +510,18 @@ xafsj: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 }
 </code></pre>
 
-<h3 id="_26">删除菜单项信息</h3>
+<h2 id="_26">删除菜单项信息</h2>
+<blockquote>
 <p>拥有菜单管理权限的用户可以删除已有的菜单项信息。</p>
+</blockquote>
 <h4 id="_27">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/system/menuItem/del</li>
-<li>请求参数：菜单项号（trska）、用户账号（xbsha）</li>
+<li>请求参数：菜单项号（trska）</li>
 <li>请求示例：</li>
 </ul>
-<pre><code>trska：&quot;1&quot;
-xbsha: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
+<pre><code>trska：1
 </code></pre>
 
 <h4 id="_28">后台响应</h4>
