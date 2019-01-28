@@ -4,4 +4,5 @@ nav:
   - 系统配置模块: system.md
   - 用户管理模块: user.md
   - 数据库设计: database.md
+  - 专利相关资料: zhuanli.md
 theme: readthedocs
