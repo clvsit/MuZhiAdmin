@@ -68,32 +68,101 @@
     <a class="current" href="./">用户管理模块</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#_1">权限管理模块</a></li>
+    <li class="toctree-l2"><a href="#_1">用户登录验证</a></li>
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_2">获取权限角色信息</a></li>
+            <li><a class="toctree-l3" href="#_2">前端请求</a></li>
         
-            <li><a class="toctree-l3" href="#_5">添加权限信息</a></li>
-        
-            <li><a class="toctree-l3" href="#_8">编辑权限信息</a></li>
-        
-            <li><a class="toctree-l3" href="#_11">删除权限信息</a></li>
+            <li><a class="toctree-l3" href="#_3">后台响应</a></li>
         
         </ul>
     
 
-    <li class="toctree-l2"><a href="#_14">员工管理模块</a></li>
+    <li class="toctree-l2"><a href="#_4">获取权限角色信息</a></li>
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_15">获取员工信息</a></li>
+            <li><a class="toctree-l3" href="#_5">前端请求</a></li>
         
-            <li><a class="toctree-l3" href="#_18">添加员工信息</a></li>
+            <li><a class="toctree-l3" href="#_6">后台响应</a></li>
         
-            <li><a class="toctree-l3" href="#_21">编辑员工信息</a></li>
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#_7">添加权限信息</a></li>
+    
+        <ul>
         
-            <li><a class="toctree-l3" href="#_24">删除员工信息</a></li>
+            <li><a class="toctree-l3" href="#_8">前端请求</a></li>
+        
+            <li><a class="toctree-l3" href="#_9">后台响应</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#_10">编辑权限信息</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_11">前端请求</a></li>
+        
+            <li><a class="toctree-l3" href="#_12">后台响应</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#_13">删除权限信息</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_14">前端请求</a></li>
+        
+            <li><a class="toctree-l3" href="#_15">后台响应</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#_16">获取员工信息</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_17">前端请求</a></li>
+        
+            <li><a class="toctree-l3" href="#_18">后台响应</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#_19">添加员工信息</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_20">前端请求</a></li>
+        
+            <li><a class="toctree-l3" href="#_21">后台响应</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#_22">编辑员工信息</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_23">前端请求</a></li>
+        
+            <li><a class="toctree-l3" href="#_24">后台响应</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#_25">删除员工信息</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_26">前端请求</a></li>
+        
+            <li><a class="toctree-l3" href="#_27">后台响应</a></li>
         
         </ul>
     
@@ -143,25 +212,126 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_1">权限管理模块</h1>
-<h2 id="_2">获取权限角色信息</h2>
-<p>若当前用户拥有权限管理权限，则可以获取后台管理系统的权限信息。</p>
+                <p>用户管理主要用于对木直小程序的所有用户数据进行统一管理，内容包括：</p>
+<ul>
+<li>用户登录</li>
+<li>权限管理</li>
+<li>员工列表</li>
+</ul>
+<p>【说明】：增删改操作需要记录当前操作信息，形式如“谁在什么时候做了什么”。因此，后台需要从 token 中取出用户账号，测试过程可以自行先用缺省值来代替。</p>
+<h2 id="_1">用户登录验证</h2>
+<blockquote>
+<p>拥有管理系统账号的员工可以登录到管理系统中。</p>
+</blockquote>
+<h4 id="_2">前端请求</h4>
+<ul>
+<li>请求方式：GET</li>
+<li>请求地址：/admin/employee/login</li>
+<li>请求参数：员工账号（jcqos）、员工密码（bcakq）</li>
+<li>请求示例：</li>
+</ul>
+<pre><code>jcqos: NDYyMWQzNzNjYWRlNGU4Mw==
+bcakq: NDliYTU5YWJiZTU2ZTA1Nw==
+</code></pre>
+
+<h4 id="_3">后台响应</h4>
+<ul>
+<li>操作视图：view_admin、view_menu</li>
+<li>返回字段：<ul>
+<li>view_admin: auth</li>
+<li>view_menu: id, name, url, belong, icon, menu</li>
+</ul>
+</li>
+<li>响应示例：</li>
+</ul>
+<pre><code class="JSON">// 请求成功
+{
+    code: &quot;1&quot;,
+    msg: &quot;员工登录成功！&quot;,
+    data: {
+        &quot;token&quot;: &quot;&quot;,
+        &quot;auth&quot;: &quot;1&quot;,
+        &quot;menuList&quot;: [
+            {
+                id: 1,
+                name: &quot;权限管理&quot;,
+                url: &quot;./page/user/auth-list.html&quot;,
+                belong: 1,
+                icon: &quot;&amp;#xe6b8;&quot;,
+                menu: &quot;用户管理&quot;
+            }, {
+                id: 2,
+                name: &quot;员工列表&quot;,
+                url: &quot;./page/user/admin-list.html&quot;,
+                belong: 1,
+                icon: &quot;&amp;#xe6b8;&quot;,
+                menu: &quot;用户管理&quot;
+            }, {
+                id: 3,
+                name: &quot;植物分类&quot;,
+                url: &quot;./page/data/type-list.html&quot;,
+                belong: 2,
+                icon: &quot;&amp;#xe723;&quot;,
+                menu: &quot;数据管理&quot;
+            }, {
+                id: 4,
+                name: &quot;植物数据&quot;,
+                url: &quot;./page/data/plant-list.html&quot;,
+                belong: 2,
+                icon: &quot;&amp;#xe723;&quot;,
+                menu: &quot;数据管理&quot;
+            }, {
+                id: 5,
+                name: &quot;菜单管理&quot;,
+                url: &quot;./page/system/menu.html&quot;,
+                belong: 3,
+                icon: &quot;&amp;#xe6da;&quot;,
+                menu: &quot;系统配置&quot;
+            }
+        ]
+    }
+}
+
+// 请求失败
+{
+    &quot;code&quot;: &quot;0&quot;,
+    &quot;msg&quot;: &quot;具体的错误信息&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+
 <p>【说明】：</p>
+<ul>
+<li>用户账号与密码经过前端 base64 加密，因此后台需先进行 base64 解码，然后对账号和密码进行验证。</li>
+<li>验证成功后，根据 auth 字段来检索当前员工可进入的菜单内容，并将菜单内容与 auth 一同整合返回给前端。</li>
+<li>token 的生成与验证请参考：https://clvsit.github.io/MuZhiAdmin/site/request/</li>
+</ul>
+<h2 id="_4">获取权限角色信息</h2>
+<blockquote>
+<p>若当前员工拥有权限管理权限，则可以获取后台管理系统的权限信息。</p>
+</blockquote>
+<p>【说明】：默认角色。</p>
 <ul>
 <li>超级管理员：可以分配管理员，且无法被其他管理员识别。超级管理员不存储在数据库中，而是存放到配置文件中，并需要进行加密处理。</li>
 <li>管理员：能够管理除管理员身份外的所有权限角色。</li>
+<li>未激活：没有任何权限，仅能登录到管理系统。一般是批量导入员工，以及删除已有权限时会产生未激活员工。</li>
 </ul>
-<h4 id="_3">前端请求</h4>
+<p>【说明】：操作视图</p>
+<ul>
+<li>超级管理员：若是超级管理员，则查询 view_auth_root 视图。</li>
+<li>其他：其他拥有权限管理权限的角色，则查询 view_auth 视图。</li>
+</ul>
+<h4 id="_5">前端请求</h4>
 <ul>
 <li>请求方式：GET</li>
 <li>请求地址：/admin/auth/get</li>
 <li>请求参数：无</li>
 <li>请求示例：无</li>
 </ul>
-<h4 id="_4">后台响应</h4>
+<h4 id="_6">后台响应</h4>
 <ul>
-<li>操作视图：view_auth</li>
-<li>返回字段：权限号、角色名称、创建日期、修改日期、修改人、权限内容。</li>
+<li>操作视图：view_auth 或 view_auth_root</li>
+<li>返回字段：id、name、dateCreate、dateModify、modifier、content、contentName（对已有字段信息进行处理后生成的内容）。</li>
 <li>响应示例：</li>
 </ul>
 <pre><code class="JSON">// 请求成功
@@ -173,27 +343,27 @@
             {
                 &quot;id&quot;: 1,
                 &quot;name&quot;: &quot;管理员&quot;,
-                &quot;dateCreate&quot;: &quot;2019-01-05 15:31&quot;,
-                &quot;dateModify&quot;: &quot;2019-01-05 15:31&quot;,
-                &quot;modifier&quot;: &quot;超级管理员&quot;,
+                &quot;dateCreate&quot;: &quot;2019-01-12 19:21&quot;,
+                &quot;dateModify&quot;: &quot;2019-01-12 19:21&quot;,
+                &quot;modifier&quot;: &quot;&quot;,
                 &quot;content&quot;: &quot;*&quot;,
                 &quot;contentName&quot;: &quot;所有权限&quot;
             }, {
                 &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;数据管理人员&quot;,
-                &quot;dateCreate&quot;: &quot;2019-01-09 15:31&quot;,
-                &quot;dateModify&quot;: &quot;2019-01-09 15:31&quot;,
-                &quot;modifier&quot;: &quot;测试人员&quot;,
-                &quot;content&quot;: &quot;1&quot;,
-                &quot;contentName&quot;: &quot;数据管理&quot;
+                &quot;name&quot;: &quot;未激活&quot;,
+                &quot;dateCreate&quot;: &quot;2019-01-12 19:22&quot;,
+                &quot;dateModify&quot;: &quot;2019-01-12 19:22&quot;,
+                &quot;modifier&quot;: &quot;&quot;,
+                &quot;content&quot;: &quot;0&quot;,
+                &quot;contentName&quot;: &quot;无权限&quot;
             }, {
                 &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;系统测试人员&quot;,
-                &quot;dateCreate&quot;: &quot;2019-01-09 15:31&quot;,
-                &quot;dateModify&quot;: &quot;2019-01-09 15:31&quot;,
-                &quot;modifier&quot;: &quot;测试人员&quot;,
-                &quot;content&quot;: &quot;1|2&quot;,
-                &quot;contentName&quot;: &quot;用户管理、数据管理&quot;
+                &quot;name&quot;: &quot;数据填写员&quot;,
+                &quot;dateCreate&quot;: &quot;2019-01-12 19:22&quot;,
+                &quot;dateModify&quot;: &quot;2019-01-29 15:06&quot;,
+                &quot;modifier&quot;: &quot;测试账号&quot;,
+                &quot;content&quot;: &quot;2&quot;,
+                &quot;contentName&quot;: &quot;数据管理&quot;
             }
         ]
     }
@@ -208,22 +378,28 @@
 </code></pre>
 
 <p>【说明】：由于权限表存储的权限形式为 “1|2”，因此在表连接的时候非常难以处理，直接在页面显示 “1|2” 肯定是不行，需要通过一种转换将 "1|2" 转换为对应的内容。这部分内容如果后台可以处理，就由后台来处理，要是麻烦的话，就让前台来实现。</p>
-<h2 id="_5">添加权限信息</h2>
-<p>拥有用户管理权限的用户可以添加新的权限角色为信息。</p>
-<h4 id="_6">前端请求</h4>
+<p>【转换规则】：</p>
+<ul>
+<li>*：转化为“所有权限”；</li>
+<li>0：转化为“无权限”；</li>
+<li>1-任何数字：对应 bmenu 表的 Uname 字段内容。</li>
+</ul>
+<h2 id="_7">添加权限信息</h2>
+<blockquote>
+<p>拥有用户管理权限的员工可以添加新的权限角色为信息。</p>
+</blockquote>
+<h4 id="_8">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/admin/auth/add</li>
-<li>请求参数：角色名称（kiwua）、权限内容（mwbqs）、用户账号（wicha）</li>
+<li>请求参数：角色名称（kiwua）、权限内容（mwbqs）</li>
 <li>请求示例：</li>
 </ul>
 <pre><code>kiwua: &quot;系统管理员&quot;
 mwbqs：&quot;1|2&quot;
-wicha: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 </code></pre>
 
-<p>【说明】：用户账号需要进行加密和解密。前端会进行 base64 加密，后台在收到后对其进行解密。</p>
-<h4 id="_7">后台响应</h4>
+<h4 id="_9">后台响应</h4>
 <ul>
 <li>操作数据表：pauth、nwatch</li>
 <li>返回字段：无</li>
@@ -252,22 +428,23 @@ wicha: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 <li>最后将时间戳、系统日期、操作内容以及前端传递的用户名称一并插入到 nwatch 表中。</li>
 </ul>
 <p>【说明】：后续的接口操作过程同<strong>添加权限信息</strong>。</p>
-<h2 id="_8">编辑权限信息</h2>
-<p>拥有用户管理权限的用户可以编辑已有的权限信息。</p>
-<h4 id="_9">前端请求</h4>
+<h2 id="_10">编辑权限信息</h2>
+<blockquote>
+<p>拥有用户管理权限的员工可以编辑已有的权限信息。</p>
+</blockquote>
+<h4 id="_11">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/admin/auth/edit</li>
-<li>请求参数：权限号（qcsua）、权限内容（uqysh）、角色名称（mcqjs）、用户账号（ahsjs）</li>
+<li>请求参数：权限号（qcsua）、权限内容（uqysh）、角色名称（mcqjs）</li>
 <li>请求示例：</li>
 </ul>
 <pre><code>qcsua：1
 uqysh: &quot;管理者&quot;
 mcqjs：&quot;1|2&quot;
-ahsjs: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 </code></pre>
 
-<h4 id="_10">后台响应</h4>
+<h4 id="_12">后台响应</h4>
 <ul>
 <li>操作数据表：pauth、nwatch</li>
 <li>返回字段：无</li>
@@ -288,21 +465,22 @@ ahsjs: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 }
 </code></pre>
 
-<p>【注意】：需要更新 pauth 记录的<strong>修改日期</strong>和<strong>修改人</strong>两个字段的值。修改日期取当前系统时间，修改人则由前端提供的<strong>用户账号</strong>。</p>
-<h2 id="_11">删除权限信息</h2>
+<p>【注意】：需要更新 pauth 记录的<strong>修改日期</strong>和<strong>修改人</strong>两个字段的值。修改日期取当前系统时间，修改人则由 token 中携带的<strong>用户账号</strong>。</p>
+<h2 id="_13">删除权限信息</h2>
+<blockquote>
 <p>拥有用户管理权限的用户可以删除已有的权限信息。</p>
-<h4 id="_12">前端请求</h4>
+</blockquote>
+<h4 id="_14">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/admin/auth/del</li>
-<li>请求参数：权限号（nckaj）、用户账号（fhsja）</li>
+<li>请求参数：权限号（nckaj）</li>
 <li>请求示例：</li>
 </ul>
 <pre><code>nckaj：1
-fhsja: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 </code></pre>
 
-<h4 id="_13">后台响应</h4>
+<h4 id="_15">后台响应</h4>
 <ul>
 <li>操作数据表：pauth、nwatch</li>
 <li>返回字段：无</li>
@@ -324,16 +502,22 @@ fhsja: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW4=&quot;
 </code></pre>
 
 <p>【说明】：当删除指定的权限角色之后，需要将分配该权限角色的所有用户的权限角色设置为未激活（kadmin 的 Bauth 字符设置为 2）。</p>
-<h1 id="_14">员工管理模块</h1>
-<h2 id="_15">获取员工信息</h2>
-<p>若当前用户拥有权限管理权限，则可以获取后台管理系统的员工信息。</p>
+<h2 id="_16">获取员工信息</h2>
+<blockquote>
+<p>若当前员工拥有用户管理权限，则可以获取后台管理系统的员工信息。</p>
+</blockquote>
 <p><img alt="获取员工信息" src="https://i.imgur.com/uBt3D4s.png" /></p>
-<p>【说明】：</p>
+<p>【说明】：权限角色</p>
 <ul>
 <li>超级管理员：可以查看和管理除自身以外的所有员工信息，包括管理员。</li>
 <li>拥有用户管理权限的员工：可以查看和管理除超级管理员和管理员之外的所有员工信息。</li>
 </ul>
-<h4 id="_16">前端请求</h4>
+<p>【说明】：查询视图</p>
+<ul>
+<li>超级管理员：若当前员工为超级管理员，则查询 view_admin_root 视图。</li>
+<li>其他：其他非超级管理员但拥有用户管理权限的员工，则查询 view_admin 视图。</li>
+</ul>
+<h4 id="_17">前端请求</h4>
 <ul>
 <li>请求方式：GET</li>
 <li>请求地址：/admin/employee/get</li>
@@ -362,10 +546,10 @@ jkams: 20
 <li>-1：所有角色</li>
 <li>具体数字：对应角色</li>
 </ul>
-<h4 id="_17">后台响应</h4>
+<h4 id="_18">后台响应</h4>
 <ul>
-<li>操作视图：view_admin</li>
-<li>返回字段：员工工号、员工姓名、员工邮箱、手机号码、权限号、权限角色名称、登录日期、登录人。</li>
+<li>操作视图：view_admin 或 view_admin_root</li>
+<li>返回字段：id、name、email、phone、auth、authName（根据 auth 字段生成的新内容）、dateCreate、creater。</li>
 <li>响应示例：</li>
 </ul>
 <pre><code class="JSON">// 请求成功
@@ -397,15 +581,17 @@ jkams: 20
 }
 </code></pre>
 
-<p>【说明】：返回示例使用 mock.js 自动生成，具体数据可参考如下图。</p>
-<h2 id="_18">添加员工信息</h2>
-<p>拥有用户管理权限的用户可以添加新的员工信息。</p>
+<p>【说明】：返回示例使用 mock.js 自动生成。</p>
+<h2 id="_19">添加员工信息</h2>
+<blockquote>
+<p>拥有用户管理权限的员工可以添加新的员工信息。</p>
+</blockquote>
 <p><img alt="添加员工信息" src="https://i.imgur.com/dTU12s2.png" /></p>
-<h4 id="_19">前端请求</h4>
+<h4 id="_20">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/admin/employee/add</li>
-<li>请求参数：员工账号（uqnck）、员工姓名（tqhck）、员工邮箱（nkalc）、手机号码（ckqbk）、权限角色（cajiw）、操作者员工号（cjiqs）</li>
+<li>请求参数：员工账号（uqnck）、员工姓名（tqhck）、员工邮箱（nkalc）、手机号码（ckqbk）、权限角色（cajiw）</li>
 <li>请求示例：</li>
 </ul>
 <pre><code>uqnck: &quot;MTU0NzE5MjE3MDEzMmpzdWNoZW5=&quot;
@@ -413,11 +599,10 @@ tqhck: &quot;测试一号&quot;
 nkalc: &quot;ceshi@163.com&quot;
 ckqbk: &quot;17826857055&quot;
 cajiw: 1
-cjiqs: &quot;1547471797664&quot;
 </code></pre>
 
 <p>【说明】：员工账号需要进行加密和解密。前端会进行 base64 加密，后台在收到后对其进行解密。</p>
-<h4 id="_20">后台响应</h4>
+<h4 id="_21">后台响应</h4>
 <ul>
 <li>操作数据表：kadmin、nwatch</li>
 <li>返回字段：无</li>
@@ -440,23 +625,25 @@ cjiqs: &quot;1547471797664&quot;
 
 <p>【操作过程-kadmin】：</p>
 <ul>
-<li>将前端传递的参数依次插入到 kadmin 表的指定字段，登录日期取当前系统时间（注意格式），登录人则填写前端传递的“操作者账号”。</li>
+<li>将前端传递的参数依次插入到 kadmin 表的指定字段，登录日期取当前系统时间（注意格式），登录人则填写 token 中携带的“操作者账号”。</li>
 </ul>
 <p>【操作过程-nwatch】：</p>
 <ul>
 <li>先获取服务器的时间戳和系统日期（符合 nwatch Ndate 字段的要求）。</li>
 <li>接着根据不同的接口生成对应的<strong>操作内容</strong>，例如添加员工信息接口对应的操作内容就是<strong>添加员工信息</strong>。</li>
-<li>最后将时间戳、系统日期、操作内容以及前端传递的用户名称一并插入到 nwatch 表中。</li>
+<li>最后将时间戳、系统日期、操作内容一并插入到 nwatch 表中。</li>
 </ul>
 <p>【说明】：后续的接口操作过程同<strong>添加员工信息</strong>。</p>
-<h2 id="_21">编辑员工信息</h2>
-<p>拥有用户管理权限的用户可以编辑已有员工的信息。</p>
+<h2 id="_22">编辑员工信息</h2>
+<blockquote>
+<p>拥有用户管理权限的员工可以编辑已有员工的信息。</p>
+</blockquote>
 <p><img alt="编辑员工信息" src="https://i.imgur.com/vaQoiw4.png" /></p>
-<h4 id="_22">前端请求</h4>
+<h4 id="_23">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/admin/employee/edit</li>
-<li>请求参数：员工号（jchan）、员工姓名（bqhsm）、员工邮箱（ncbak）、手机号码（uqihc）、权限角色（cnakv）、操作者员工号（jqscm）</li>
+<li>请求参数：员工号（jchan）、员工姓名（bqhsm）、员工邮箱（ncbak）、手机号码（uqihc）、权限角色（cnakv）</li>
 <li>请求示例：</li>
 </ul>
 <pre><code>jchan: &quot;1547471774769&quot;
@@ -464,10 +651,9 @@ bqhsm: &quot;朱娜&quot;
 ncbak: &quot;p.mnhfavng@grirxwt.dz&quot;
 uqihc: &quot;15585858447&quot;
 cnakv: 1
-jqscm: &quot;1547471797664&quot;
 </code></pre>
 
-<h4 id="_23">后台响应</h4>
+<h4 id="_24">后台响应</h4>
 <ul>
 <li>操作数据表：kadmin、nwatch</li>
 <li>返回字段：无</li>
@@ -488,21 +674,22 @@ jqscm: &quot;1547471797664&quot;
 }
 </code></pre>
 
-<h2 id="_24">删除员工信息</h2>
-<p>拥有用户管理权限的用户可以删除已有的员工信息。</p>
+<h2 id="_25">删除员工信息</h2>
+<blockquote>
+<p>拥有用户管理权限员工可以删除已有的员工信息。</p>
+</blockquote>
 <p><img alt="删除员工信息" src="https://i.imgur.com/Ob2of0O.jpg" /></p>
-<h4 id="_25">前端请求</h4>
+<h4 id="_26">前端请求</h4>
 <ul>
 <li>请求方式：POST</li>
 <li>请求地址：/admin/employee/del</li>
-<li>请求参数：员工号（cjwqk）、操作者员工号（yqjac）</li>
+<li>请求参数：员工号（cjwqk）</li>
 <li>请求示例：</li>
 </ul>
 <pre><code>cjwqk：&quot;1547471774769&quot;
-yqjac: &quot;1547471797664&quot;
 </code></pre>
 
-<h4 id="_26">后台响应</h4>
+<h4 id="_27">后台响应</h4>
 <ul>
 <li>操作数据表：kadmin、nwatch</li>
 <li>返回字段：无</li>
