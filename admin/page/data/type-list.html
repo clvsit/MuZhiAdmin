@@ -114,7 +114,8 @@
                         id = tr.data("id"),
                         name = tr.children()[1].innerText;
 
-                    MuZhi.layer.confirm("确定要删除<strong class='color-red'>" + name + "</strong>吗？", function () {
+                    MuZhi.layer.confirm("确定要删除<strong class='color-red'>" + name + "</strong>吗？<br/>注意：" +
+                        "删除植物分类，会将当前分类下的所有植物设置为无分类", function () {
                         MuZhi.Link.connect("delPlantType", {
                             data: {
                                 id: id

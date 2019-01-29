@@ -602,30 +602,42 @@ MuZhi.Link.urls.getAuthList = function () {
 /**
  * 用户管理：添加权限信息
  */
-MuZhi.Link.urls.addAuth = function () {
+MuZhi.Link.urls.addAuth = function (data) {
     return {
         type: "post",
         url: "admin/auth/add",
+        data: {
+            "kiwua": data.name,
+            "mwbqs": data.content
+        }
     }
 };
 
 /**
  * 用户管理：编辑权限信息
  */
-MuZhi.Link.urls.editAuth = function () {
+MuZhi.Link.urls.editAuth = function (data) {
     return {
         type: "post",
         url: "admin/auth/edit",
+        data: {
+            "qcsua": data.id,
+            "uqysh": data.name,
+            "mcqjs": data.content
+        }
     }
 };
 
 /**
  * 用户管理：删除权限信息
  */
-MuZhi.Link.urls.delAuth = function () {
+MuZhi.Link.urls.delAuth = function (data) {
     return {
         type: "post",
         url: "admin/auth/del",
+        data: {
+            "nckaj": data.id
+        }
     }
 };
 
@@ -642,20 +654,34 @@ MuZhi.Link.urls.getUserList = function () {
 /**
  * 用户管理：创建用户
  */
-MuZhi.Link.urls.addEmployee = function () {
+MuZhi.Link.urls.addEmployee = function (data) {
     return {
         type: "post",
         url: "admin/user/add",
+        data: {
+            "uqnck": data.account,
+            "tqhck": data.name,
+            "nkalc": data.email,
+            "ckqbk": data.phone,
+            "cajiw": data.auth
+        }
     }
 };
 
 /**
  * 用户管理：编辑用户
  */
-MuZhi.Link.urls.editEmployee = function () {
+MuZhi.Link.urls.editEmployee = function (data) {
     return {
         type: "post",
         url: "admin/user/edit",
+        data: {
+            "jchan": data.id,
+            "bqhsm": data.name,
+            "ncbak": data.email,
+            "uqihc": data.phone,
+            "cnakv": data.auth
+        }
     }
 };
 
@@ -667,19 +693,8 @@ MuZhi.Link.urls.delEmployee = function (data) {
         type: "post",
         url: "admin/user/del",
         data: {
-            "cjwqk": btoa(data.employee),
-            "yqjac": btoa(data.account)
+            "cjwqk": data.employee
         }
-    }
-};
-
-/**
- * 用户模块：查询客户
- */
-MuZhi.Link.urls.getCustomer = function () {
-    return {
-        type: "get",
-        url: "customer/get",
     }
 };
 
@@ -710,12 +725,14 @@ MuZhi.Link.urls.addPlantType = function (data) {
 /**
  * 数据管理：编辑植物分类
  */
-MuZhi.Link.urls.editPlantType = function () {
+MuZhi.Link.urls.editPlantType = function (data) {
     return {
         type: "post",
         url: "data/plant/type/edit",
         data: {
-
+            "kqinc": data.id,
+            "owina": data.name,
+            "uajcv": data.brief
         }
     }
 };
@@ -723,10 +740,13 @@ MuZhi.Link.urls.editPlantType = function () {
 /**
  * 数据管理：删除植物分类
  */
-MuZhi.Link.urls.delPlantType = function () {
+MuZhi.Link.urls.delPlantType = function (data) {
     return {
         type: "post",
         url: "data/plant/type/del",
+        data: {
+            "yscks": data.id
+        }
     }
 };
 
@@ -757,6 +777,17 @@ MuZhi.Link.urls.addPlant = function () {
     return {
         type: "post",
         url: "data/plant/data/add",
+    }
+};
+
+/**
+ * 数据管理：上传植物图片
+ * @returns {{type: string, url: string}}
+ */
+MuZhi.Link.urls.uploadPlant = function () {
+    return {
+        type: "post",
+        url: "data/plant/data/upload"
     }
 };
 

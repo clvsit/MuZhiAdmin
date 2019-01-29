@@ -531,3 +531,62 @@ table th, table td {
     line-height: 1;
     color: #333;
 }
+
+/* 图片上传模块 */
+.upload-wrap {
+    display: flex;
+    flex-direction: row;
+}
+.upload-wrap .upload-button {
+    width: 100px;
+    height: 100px;
+    margin: 10px 10px 0 0;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.upload-wrap .upload-plus {
+    font-size: 64px;
+    line-height: 100px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.2);
+}
+.upload-image {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 10px 10px 0 0;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all 0.25s linear;
+    cursor: pointer;
+}
+.upload-image img {
+    width: 100%;
+    height: 100%;
+}
+.upload-image-remove {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    z-index: 10;
+    text-align: center;
+    opacity: 0;
+    background-color: rgba(0,0,0,0.5);
+    transition: opacity 0.25s linear;
+}
+.upload-image-remove .layui-icon {
+    font-size: 64px;
+    line-height: 100px;
+    color: #fff;
+}
+.upload-image:hover {
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.5);
+    opacity: 0.8;
+    background-color: #000;
+}
+.upload-image:hover .upload-image-remove {
+    opacity: 1;
+}

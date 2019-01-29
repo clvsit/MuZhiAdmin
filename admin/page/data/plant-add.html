@@ -114,6 +114,19 @@
             <div class="layui-form-mid layui-word-aux">长度限制在 10 个中文以内</div>
         </div>
         <div class="layui-form-item">
+            <label for="file" class="layui-form-label">植物图片</label>
+            <div class="layui-input-inline layui-input-800">
+                <div class="layui-form-mid layui-word-aux">最多上传 5 张图片</div>
+                <div class="layui-clear"></div>
+                <div class="upload-wrap" id="uploadWrap">
+                    <div class="upload-button" id="uploadBtn">
+                        <div class="upload-plus">+</div>
+                        <input type="file" accept="image/*" class="layui-hide" value="图片上传" name="picture" id="file" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label"></label>
             <button class="layui-btn" lay-filter="add" lay-submit>新增</button>
         </div>
@@ -158,6 +171,52 @@
                 return verify.lengthRequired(value, "花语", 16, true);
             }
         });
+
+        const uploadWrap = document.getElementById("uploadWrap"),
+            uploadBtn = document.getElementById("uploadBtn"),
+            file = document.getElementById("file");
+
+        let imageNumber = 0;
+
+        uploadWrap.addEventListener("click", function (event) {
+            const target = event.target;
+        });
+        uploadBtn.addEventListener("click", function () {
+            file.click();
+        }, false);
+        file.addEventListener("change", function () {
+            const reader = new FileReader(),
+                fileObj = file.files[0];
+
+            if (/image\/*/.test(fileObj.type)) {
+                reader.readAsDataURL(fileObj);
+                reader.onprogress = function () {
+                    const layerIndex = MuZhi.Layer.showLoading(1);
+
+                    $("<div class='upload-image'>" +
+                        "<img src='" + reader.result + "'/>" +
+                        "<div class='upload-image-remove'>" +
+                        "<i class='layui-icon layui-icon-delete'></i>" +
+                        "</div></div>").insertBefore(uploadBtn);
+
+                    MuZhi.Link.connect("uploadPlant", {
+                        data: reader.result,
+                        successFn () {
+                            imageNumber++;
+                            if (imageNumber >= 2) {
+                                uploadBtn.style.display = "none";
+                            }
+                            MuZhi.Layer.closeLoading(layerIndex);
+                        },
+                        completeFn () {
+                            MuZhi.Layer.closeLoading(layerIndex);
+                        }
+                    });
+                };
+            } else {
+                MuZhi.Layer.warn("上传图片格式不正确！");
+            }
+        }, false);
 
         form.on('submit(add)', function (data) {
             MuZhi.Util.changeType(data.field, "type", "int");

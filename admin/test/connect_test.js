@@ -135,16 +135,16 @@ Mock.mock(/http:\/\/test.com\/data\/plant\/type\/get\?*?/, {
     msg: "获取植物分类列表成功",
     data: {
         "typeList": [
-            {tid: 1, name: "一、二年生花卉", brief: ""},
-            {tid: 2, name: "宿根花卉", brief: ""},
-            {tid: 3, name: "球根花卉", brief: ""},
-            {tid: 4, name: "多浆植物", brief: ""},
-            {tid: 5, name: "兰科花卉", brief: ""},
-            {tid: 6, name: "水生花卉", brief: ""},
-            {tid: 7, name: "高山花卉及岩生植物", brief: ""},
-            {tid: 8, name: "木本植物", brief: ""},
-            {tid: 9, name: "蕨类植物", brief: ""},
-            {tid: 10, name: "苔藓植物", brief: ""}
+            {tid: 1, name: "一、二年生花卉", brief: "@cword(16)"},
+            {tid: 2, name: "宿根花卉", brief: "@cword(16)"},
+            {tid: 3, name: "球根花卉", brief: "@cword(16)"},
+            {tid: 4, name: "多浆植物", brief: "@cword(16)"},
+            {tid: 5, name: "兰科花卉", brief: "@cword(16)"},
+            {tid: 6, name: "水生花卉", brief: "@cword(16)"},
+            {tid: 7, name: "高山花卉及岩生植物", brief: "@cword(16)"},
+            {tid: 8, name: "木本植物", brief: "@cword(16)"},
+            {tid: 9, name: "蕨类植物", brief: "@cword(16)"},
+            {tid: 10, name: "苔藓植物", brief: "@cword(16)"}
         ]
     }
 });
@@ -174,6 +174,29 @@ Mock.mock(/http:\/\/test.com\/data\/plant\/type\/del/, {
     code: "1",
     msg: "删除植物分类成功",
     data: {}
+});
+
+/**
+ * 数据管理：植物列表-获取简略植物列表
+ */
+Mock.mock(/http:\/\/test.com\/data\/plant\/data\/get\?*?/, {
+    code: "1",
+    msg: "获取植物列表成功",
+    data: {
+        count: 265,
+        "plantList|20": [
+            {
+                "id": 1,
+                "type": "@cword(8)",
+                "name": "@cword(6)",
+                "sname": "@word(10)",
+                "genera": "@cword(12)",
+                "dateCreate": "@date('yyyy-MM-dd')",
+                "dateModify": "@date('yyyy-MM-dd')",
+                "modifier": "@cname()"
+            }
+        ]
+    }
 });
 
 /**
@@ -218,23 +241,23 @@ Mock.mock(/http:\/\/test.com\/data\/plant\/data\/detail\?*?/, {
     data: {
         "detail": {
             "id": 1,
-            "tname": "@cword(8)",
-            "name": "@cword(6)",
-            "sname": "@word(10)",
-            "oname": "@cword(16)",
-            "genera": "@cword(12)",
-            "distribution": "@csentence()",
-            "characteristics": "@csentence()",
-            "advice": "@csentence()",
-            "flang": "@csentence()",
+            "tname": "一、二年生花卉",
+            "name": "一串红",
+            "sname": "Salvia splendens",
+            "oname": "墙下红、草象牙红、爆竹红、西洋红",
+            "genera": "唇形科鼠尾草属",
+            "distribution": "原产南美巴西，各地广为栽培",
+            "characteristics": "一串红不耐寒，生育适温24℃，喜阳光充足，稍耐半阴，喜疏松肥沃的土壤",
+            "advice": "建议种植于南面阳台，每周浇100ml的水，浇水要掌握见干见湿的原则，保持土壤60%左右的土壤含水量",
+            "flang": "恋爱的心，象征男女之间纯洁的爱情",
             "temperature": "22|24",
             "moisture": "200|300",
             "fertility": "30|48",
             "light": "50|60",
             "picture": "",
-            "dateCreate": "@date('yyyy-MM-dd')",
-            "dateModify": "@date('yyyy-MM-dd')",
-            "modifier": "@cname()"
+            "dateCreate": "2019-01-23",
+            "dateModify": "2019-01-23",
+            "modifier": "测试一号"
         }
     }
 });
@@ -245,6 +268,15 @@ Mock.mock(/http:\/\/test.com\/data\/plant\/data\/detail\?*?/, {
 Mock.mock(/http:\/\/test.com\/data\/plant\/data\/add/, {
     code: "1",
     msg: "新增植物信息成功",
+    data: {}
+});
+
+/**
+ * 数据管理：上传植物图片
+ */
+Mock.mock(/http:\/\/test.com\/data\/plant\/data\/upload/, {
+    code: "1",
+    msg: "上传植物图片成功",
     data: {}
 });
 

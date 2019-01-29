@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>请求内容说明 - 木直小程序后台管理系统文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u8bf7\u6c42\u5185\u5bb9\u8bf4\u660e";
+    var mkdocs_page_input_path = "request.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 木直小程序后台管理系统文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">请求内容说明</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">请求内容说明</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#token">token 验证机制</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../system/">系统配置模块</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../user/">用户管理模块</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../database/">数据库设计</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../zhuanli/">专利相关资料</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">木直小程序后台管理系统文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>请求内容说明</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">请求内容说明</h1>
+<p>【流程说明】：</p>
+<ul>
+<li>员工成功登录到后台管理系统后，系统需要根据员工工号和当前系统时间生成 token，并将 token 返回给前端。</li>
+<li>此后，前端的所有请求都带有 token，系统需要验证 token 是否正确。判断方式请参考后续的<strong>token 验证机制</strong>。</li>
+</ul>
+<h2 id="token">token 验证机制</h2>
+<p>【token 格式】：</p>
+<pre><code>员工工号（13 位） + 当前系统时间（YYMMdd，6 位）
+1547471774769 190115
+</code></pre>
+
+<p>【注意】：1547471774769 和 190115 之间没有空格，空格是为了方便阅读。</p>
+<p>token 拼接完成后，需要对 token 进行 base64 编码。</p>
+<p>【最终格式】：</p>
+<pre><code>MTU0NzQ3MTc3NDc2OTE5MDExNQ==
+</code></pre>
+
+<h4 id="_2">设计思路</h4>
+<p>整体设计思路可分为两部分，其一是为了后续操作的便捷，其二是确保数据传递的安全性。</p>
+<p>【便捷性考虑】：员工的许多操作都需要记录在数据表中，例如员工修改了植物分类信息。记录格式为“谁 + 时间 + 做了什么”，因此需要前端提供当前操作员工的工号。既然员工工号在大多数的接口中都有涉及，那么就拿来作为 token 识别的一部分。</p>
+<ul>
+<li>除了上述原因外，作为 token 的参数必须是保存在数据库中的数据，要不然无法进行比对，总不能系统生成一个 token 就保存到内存中吧。</li>
+<li>使用员工工号，而非员工账号也能够在一定程度上保护员工账号信息，且员工账号通过 md5 加密后是不能再转回来处理，因此前后端要通过员工账号来进行信息交互，要么再进行一层加密，要么就直接用 md5 形式的员工账号进行交互，这非常不安全。</li>
+</ul>
+<p>【安全性考虑】：单独以员工工号作为 token 还是存在一定的风险，因此再加上当前系统的指定格式以增加 token 的长度与复杂度。</p>
+<h4 id="_3">验证过程</h4>
+<p>员工登录成功后，系统返回 token，例如：</p>
+<pre><code>MTU0NzQ3MTc3NDc2OTE5MDExNQ==
+</code></pre>
+
+<p>此后，前端的每次请求都会带有反转的 token，例如：</p>
+<pre><code>=QNxEDM5ETO2cDN3cTM3QzN0UTM
+</code></pre>
+
+<p>系统接收到反转的 token 后，需要先进行转置操作，还原成标准格式的 token，然后再进行 base64 解码。</p>
+<pre><code>1547471774769190115
+</code></pre>
+
+<p>将得到的解码结果进行切分，前 13 位为员工工号，后 6 位为当前系统时间（生成 token 的系统时间，后续说明以 <strong>token 时间</strong>代替）。</p>
+<ul>
+<li>判断员工工号是否存在。</li>
+<li>判断 token 时间是否与当前系统日期吻合。</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../system/" class="btn btn-neutral float-right" title="系统配置模块">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="首页"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../system/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
