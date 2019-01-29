@@ -400,6 +400,11 @@ const MuZhi = {
             return data;
         },
 
+        /**
+         * 获取指定格式的系统时间
+         * @param format String 指定格式
+         * @returns {*}
+         */
         getSystemTime (format) {
             const date = new Date(),
                 param = {
@@ -560,32 +565,16 @@ const MuZhi = {
 };
 
 /**
- * 用户模块：客户注册
+ * 用户管理：员工登录
  */
-MuZhi.Link.urls.register = function () {
-    return {
-        type: "post",
-        url: "/user/register",
-    }
-};
-
-/**
- * 用户模块：客户登录
- */
-MuZhi.Link.urls.login = function () {
-    return {
-        type: "post",
-        url: "user/login",
-    }
-};
-
-/**
- * 用户模块：用户登录
- */
-MuZhi.Link.urls.adminLogin = function () {
+MuZhi.Link.urls.login = function (data) {
     return {
         type: "post",
         url: "admin/user/login",
+        data: {
+            "jcqos": data.account,
+            "bcakq": data.password
+        }
     }
 };
 
@@ -784,10 +773,17 @@ MuZhi.Link.urls.addPlant = function () {
  * 数据管理：上传植物图片
  * @returns {{type: string, url: string}}
  */
-MuZhi.Link.urls.uploadPlant = function () {
+MuZhi.Link.urls.uploadPlantPicture = function () {
     return {
         type: "post",
-        url: "data/plant/data/upload"
+        url: "data/plant/picture/add"
+    }
+};
+
+MuZhi.Link.urls.delPlantPicture = function () {
+    return {
+        type: "post",
+        url: "data/plant/picture/del"
     }
 };
 

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>数据管理接口文档 - 木直小程序后台管理系统文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u6570\u636e\u7ba1\u7406\u63a5\u53e3\u6587\u6863";
+    var mkdocs_page_input_path = "data.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 木直小程序后台管理系统文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../request/">请求内容说明</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../system/">系统配置模块</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../user/">用户管理模块</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../database/">数据库设计</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../zhuanli/">专利相关资料</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">木直小程序后台管理系统文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>数据管理接口文档</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">数据管理接口文档</h1>
+<p>数据管理主要用于对木直小程序的所有数据进行统一管理，内容包括：
+- 植物分类
+- 植物列表</p>
+<p>【说明】：增删改操作需要记录当前操作信息，形式如“谁在什么时候做了什么”。因此，后台需要从 token 中取出用户账号，测试过程可以自行先用缺省值来代替。</p>
+<h2 id="_2">获取植物分类</h2>
+<p>拥有数据管理权限的员工可以获取并查看<strong>数据管理</strong>下的<strong>植物分类</strong>的所有数据。</p>
+<p><img alt="获取植物分类" src="https://i.imgur.com/MNVbnVm.png" /></p>
+<h4 id="_3">前端请求</h4>
+<ul>
+<li>请求方式：GET</li>
+<li>请求地址：/data/plant/type/get</li>
+<li>请求参数：无</li>
+<li>请求示例：无</li>
+</ul>
+<h4 id="_4">后台响应</h4>
+<ul>
+<li>操作视图：view_plant_type</li>
+<li>返回字段：id、name、brief</li>
+<li>响应示例：</li>
+</ul>
+<pre><code class="JSON">// 请求成功
+{
+    code: &quot;1&quot;,
+    msg: &quot;获取植物分类列表成功&quot;,
+    data: {
+        &quot;typeList&quot;: [
+            {tid: 1, name: &quot;一、二年生花卉&quot;, brief: &quot;&quot;},
+            {tid: 2, name: &quot;宿根花卉&quot;, brief: &quot;&quot;},
+            {tid: 3, name: &quot;球根花卉&quot;, brief: &quot;&quot;},
+            {tid: 4, name: &quot;多浆植物&quot;, brief: &quot;&quot;},
+            {tid: 5, name: &quot;兰科花卉&quot;, brief: &quot;&quot;},
+            {tid: 6, name: &quot;水生花卉&quot;, brief: &quot;&quot;},
+            {tid: 7, name: &quot;高山花卉及岩生植物&quot;, brief: &quot;&quot;},
+            {tid: 8, name: &quot;木本植物&quot;, brief: &quot;&quot;},
+            {tid: 9, name: &quot;蕨类植物&quot;, brief: &quot;&quot;},
+            {tid: 10, name: &quot;苔藓植物&quot;, brief: &quot;&quot;}
+        ]
+    }
+}
+
+// 请求失败
+{
+    &quot;code&quot;: &quot;0&quot;,
+    &quot;msg&quot;: &quot;具体的错误信息&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+
+<h2 id="_5">添加植物分类信息</h2>
+<blockquote>
+<p>拥有数据管理权限的员工可以添加新的植物分类信息。</p>
+</blockquote>
+<p><img alt="新增植物分类信息" src="https://i.imgur.com/h4HoyBW.png" /></p>
+<h4 id="_6">前端请求</h4>
+<ul>
+<li>请求方式：POST</li>
+<li>请求地址：/data/plant/type/add</li>
+<li>请求参数：植物分类名（uqish）、分类简介（qojsd）</li>
+<li>请求示例：</li>
+</ul>
+<pre><code>uqish: &quot;苔藓植物&quot;
+qijsd：&quot;关于苔藓植物的介绍&quot;
+</code></pre>
+
+<h4 id="_7">后台响应</h4>
+<ul>
+<li>操作数据表：kplanttype、nwatch</li>
+<li>返回字段：无</li>
+<li>响应示例：</li>
+</ul>
+<pre><code class="JSON">// 请求成功
+{
+    code: &quot;1&quot;,
+    msg: &quot;新增植物分类信息成功&quot;,
+    data: {}
+}
+
+// 请求失败
+{
+    &quot;code&quot;: &quot;0&quot;,
+    &quot;msg&quot;: &quot;具体的错误信息&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+
+<h2 id="_8">编辑植物分类信息</h2>
+<blockquote>
+<p>拥有数据管理权限的用户可以编辑已有的植物分类信息。</p>
+</blockquote>
+<p><img alt="编辑植物分类信息" src="https://i.imgur.com/DOJENia.png" /></p>
+<h4 id="_9">前端请求</h4>
+<ul>
+<li>请求方式：POST</li>
+<li>请求地址：/data/plant/type/edit</li>
+<li>请求参数：植物分类号（kqinc）、植物分类名称（owina）、植物分类简介（uajcv）</li>
+<li>请求示例：</li>
+</ul>
+<pre><code>kqinc：1
+owina: &quot;苔藓植物&quot;
+uajcv：&quot;关于苔藓植物的介绍2&quot;
+</code></pre>
+
+<h4 id="_10">后台响应</h4>
+<ul>
+<li>操作数据表：kplanttype、nwatch</li>
+<li>返回字段：无</li>
+<li>响应示例：</li>
+</ul>
+<pre><code class="JSON">// 请求成功
+{
+    code: &quot;1&quot;,
+    msg: &quot;编辑植物分类信息成功&quot;,
+    data: {}
+}
+
+// 请求失败
+{
+    &quot;code&quot;: &quot;0&quot;,
+    &quot;msg&quot;: &quot;具体的错误信息&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+
+<h2 id="_11">删除植物分类信息</h2>
+<blockquote>
+<p>拥有数据管理权限的用户可以删除已有的植物分类信息。</p>
+</blockquote>
+<p><img alt="删除植物分类信息" src="https://i.imgur.com/qRu3iGt.png" /></p>
+<h4 id="_12">前端请求</h4>
+<ul>
+<li>请求方式：POST</li>
+<li>请求地址：/data/plant/type/del</li>
+<li>请求参数：植物分类号（yscks）</li>
+<li>请求示例：</li>
+</ul>
+<pre><code>yscks：1
+</code></pre>
+
+<h4 id="_13">后台响应</h4>
+<ul>
+<li>操作数据表：kplanttype、nplant、nwatch</li>
+<li>返回字段：无</li>
+<li>响应示例：</li>
+</ul>
+<pre><code class="JSON">// 请求成功
+{
+    code: &quot;1&quot;,
+    msg: &quot;删除植物分类信息成功&quot;,
+    data: {}
+}
+
+// 请求失败
+{
+    &quot;code&quot;: &quot;0&quot;,
+    &quot;msg&quot;: &quot;具体的错误信息&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+
+<p>【说明】：删除植物分类时，需要先将从属该分类的植物的 Ptid 字段（植物分类号）设置为 0，表示无分类。然后再从 nplant 中将当前分类数据给移除。</p>
+<h2 id="_14">获取简略植物列表</h2>
+<p>拥有数据管理权限的员工可以获取并查看<strong>数据管理</strong>下的<strong>植物列表</strong>的所有数据。</p>
+<h4 id="_15">前端请求</h4>
+<ul>
+<li>请求方式：GET</li>
+<li>请求地址：/data/plant/data/get</li>
+<li>请求参数：无</li>
+<li>请求示例：无</li>
+</ul>
+<h4 id="_16">后台响应</h4>
+<ul>
+<li>操作视图：view_plant_summary</li>
+<li>返回字段：id、name、sname、type、genera、dateCreate、dateModify、modifier</li>
+<li>响应示例：</li>
+</ul>
+<pre><code class="JSON">// 请求成功
+{
+    code: &quot;1&quot;,
+    msg: &quot;获取植物列表成功&quot;,
+    data: {
+        count: 265,
+        plantList: [
+            {
+                &quot;id&quot;: 1,
+                &quot;type&quot;: &quot;一、二年生花卉&quot;,
+                &quot;name&quot;: &quot;一串红&quot;,
+                &quot;sname&quot;: &quot;Salvia splendens&quot;,
+                &quot;genera&quot;: &quot;唇形科鼠尾草属&quot;,
+                &quot;dateCreate&quot;: &quot;2019-01-28&quot;,
+                &quot;dateModify&quot;: &quot;2019-01-28&quot;,
+                &quot;modifier&quot;: &quot;测试一号&quot;
+            }
+        ]
+    }
+}
+
+// 请求失败
+{
+    &quot;code&quot;: &quot;0&quot;,
+    &quot;msg&quot;: &quot;具体的错误信息&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+
+<p>【说明】：返回的 count 表示符合当前搜索条件的所有植物数据的个数。</p>
+<h2 id="_17">获取植物详情</h2>
+<p>拥有数据管理权限的员工可以获取并查看特定植物的详细数据。</p>
+<h4 id="_18">前端请求</h4>
+<ul>
+<li>请求方式：GET</li>
+<li>请求地址：/data/plant/data/detail</li>
+<li>请求参数：植物号（ycakn）</li>
+<li>请求示例：</li>
+</ul>
+<pre><code>ycakn: 1
+</code></pre>
+
+<h4 id="_19">后台响应</h4>
+<ul>
+<li>操作视图：view_plant_detail</li>
+<li>返回字段：id、tname、name、sname、oname、genera、distribution、characteristics、advice、flang、temperature、moisture、fertility、light、picture、dateCreate、dateModify、modifier</li>
+<li>响应示例：</li>
+</ul>
+<pre><code class="JSON">// 请求成功
+{
+    code: &quot;1&quot;,
+    msg: &quot;获取植物详情成功&quot;,
+    data: {
+        &quot;detail&quot;: {
+            &quot;id&quot;: 1,
+            &quot;tname&quot;: &quot;一、二年生花卉&quot;,
+            &quot;name&quot;: &quot;一串红&quot;,
+            &quot;sname&quot;: &quot;Salvia splendens&quot;,
+            &quot;oname&quot;: &quot;墙下红、草象牙红、爆竹红、西洋红&quot;,
+            &quot;genera&quot;: &quot;唇形科鼠尾草属&quot;,
+            &quot;distribution&quot;: &quot;原产南美巴西，各地广为栽培&quot;,
+            &quot;characteristics&quot;: &quot;一串红不耐寒，生育适温24℃，喜阳光充足，稍耐半阴，喜疏松肥沃的土壤&quot;,
+            &quot;advice&quot;: &quot;建议种植于南面阳台，每周浇100ml的水，浇水要掌握见干见湿的原则，保持土壤60%左右的土壤含水量&quot;,
+            &quot;flang&quot;: &quot;恋爱的心，象征男女之间纯洁的爱情&quot;,
+            &quot;temperature&quot;: &quot;22|24&quot;,
+            &quot;moisture&quot;: &quot;200|300&quot;,
+            &quot;fertility&quot;: &quot;30|48&quot;,
+            &quot;light&quot;: &quot;50|60&quot;,
+            &quot;picture&quot;: &quot;picture/1/20190129214317.jpg|picture/1/20190129214332.jpg,
+            &quot;dateCreate&quot;: &quot;2019-01-23&quot;,
+            &quot;dateModify&quot;: &quot;2019-01-23&quot;,
+            &quot;modifier&quot;: &quot;测试一号&quot;
+        }
+    }
+}
+
+// 请求失败
+{
+    &quot;code&quot;: &quot;0&quot;,
+    &quot;msg&quot;: &quot;具体的错误信息&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+
+<p>【说明】：关于 picture 字段，需要商讨图片在服务器的存放地址以及图片的格式。</p>
+<h2 id="_20">添加植物信息</h2>
+<blockquote>
+<p>拥有数据管理权限的员工可以添加新的植物信息。</p>
+</blockquote>
+<h4 id="_21">前端请求</h4>
+<ul>
+<li>请求方式：POST</li>
+<li>请求地址：/data/plant/data/add</li>
+<li>请求参数：植物名称（jmalc）、植物学名（bansk）、植物别名（mcavc）、所属分类（ywnac）、植物科属（qjall）、产地与分布（lamch）、生物学特性（tqjck）、养护建议（bnamc）、花语（yahsk）、适宜温度（nalcs）、适宜水份（qnalk）、适宜肥力（bakcn）、适宜光照（bqksl）、植物图片（qlpsf）</li>
+<li>请求示例：</li>
+</ul>
+<pre><code>jmalc: &quot;一串红&quot;
+bansk：&quot;Salvia splendens&quot;
+mcavc: &quot;墙下红、草象牙红、爆竹红、西洋红&quot;
+ywnac: 1
+qjall: &quot;唇形科鼠尾草属&quot;
+lamch: &quot;原产南美巴西，各地广为栽培&quot;
+tqjck: &quot;一串红不耐寒，生育适温24℃，喜阳光充足，稍耐半阴，喜疏松肥沃的土壤&quot;
+bnamc: &quot;建议种植于南面阳台，每周浇100ml的水，浇水要掌握见干见湿的原则，保持土壤60%左右的土壤含水量&quot;
+yahsk: &quot;恋爱的心，象征男女之间纯洁的爱情&quot;
+nalcs: &quot;22|24&quot;
+qnalk: &quot;200|300&quot;
+bakcn: &quot;30|48&quot;
+bqksl: &quot;50|60&quot;
+qlpsf: &quot;20190129214317|20190129214332&quot;
+</code></pre>
+
+<h4 id="_22">后台响应</h4>
+<ul>
+<li>操作数据表：nplant、nwatch</li>
+<li>返回字段：无</li>
+<li>响应示例：</li>
+</ul>
+<pre><code class="JSON">// 请求成功
+{
+    code: &quot;1&quot;,
+    msg: &quot;新增植物信息成功&quot;,
+    data: {}
+}
+
+// 请求失败
+{
+    &quot;code&quot;: &quot;0&quot;,
+    &quot;msg&quot;: &quot;具体的错误信息&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+
+<h2 id="_23">上传植物图片</h2>
+<blockquote>
+<p>拥有数据管理权限的员工可以在新增植物信息的同时，上传与当前植物相关的图片。</p>
+</blockquote>
+<h4 id="_24">前端请求</h4>
+<ul>
+<li>请求方式：POST</li>
+<li>请求地址：/data/plant/picture/add</li>
+<li>请求参数：图片名称（hqkcn）、图片内容（yqinc）</li>
+<li>请求示例：</li>
+</ul>
+<pre><code>hqkcn: &quot;20190129211745&quot;
+yqinc: &quot;data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...&quot;
+</code></pre>
+
+<h4 id="_25">后台响应</h4>
+<ul>
+<li>响应示例：</li>
+</ul>
+<pre><code class="JSON">// 请求成功
+{
+    code: &quot;1&quot;,
+    msg: &quot;上传植物图片成功&quot;,
+    data: {}
+}
+
+// 请求失败
+{
+    &quot;code&quot;: &quot;0&quot;,
+    &quot;msg&quot;: &quot;具体的错误信息&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+
+<p>【说明】：到指定的服务器文件夹中创建该图片文件。</p>
+<h2 id="_26">删除上传的植物图片</h2>
+<blockquote>
+<p>拥有数据管理权限的员工可以删除已上传的植物图片。</p>
+</blockquote>
+<h4 id="_27">前端请求</h4>
+<ul>
+<li>请求方式：POST</li>
+<li>请求地址：/data/plant/picture/del</li>
+<li>请求参数：图片名称（jqlcs）</li>
+<li>请求示例：</li>
+</ul>
+<pre><code>jqlcs: &quot;20190129211745&quot;
+</code></pre>
+
+<h4 id="_28">后台响应</h4>
+<ul>
+<li>响应示例：</li>
+</ul>
+<pre><code class="JSON">// 请求成功
+{
+    code: &quot;1&quot;,
+    msg: &quot;删除上传的植物图片成功&quot;,
+    data: {}
+}
+
+// 请求失败
+{
+    &quot;code&quot;: &quot;0&quot;,
+    &quot;msg&quot;: &quot;具体的错误信息&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+
+<p>【说明】：到指定服务器文件夹中删除该图片。</p>
+<h2 id="_29">编辑植物信息</h2>
+<blockquote>
+<p>拥有数据管理权限的员工可以编辑已有的植物信息。</p>
+</blockquote>
+<h4 id="_30">前端请求</h4>
+<ul>
+<li>请求方式：POST</li>
+<li>请求地址：/data/plant/data/edit</li>
+<li>请求参数：植物名称（jqkcn）、植物学名（uqisk）、植物别名（uwicn）、所属分类（bcnak）、植物科属（namcl）、产地与分布（vxhan）、生物学特性（bafkd）、养护建议（feusk）、花语（rjsal）、适宜温度（tquso）、适宜水份（qiske）、适宜肥力（xvsml）、适宜光照（qkofs）、植物图片（hajsk）</li>
+<li>请求示例：</li>
+</ul>
+<pre><code>jqkcn: &quot;一串红&quot;
+uqisk：&quot;Salvia splendens&quot;
+uwicn: &quot;墙下红、草象牙红、爆竹红、西洋红&quot;
+bcnak: 1
+namcl: &quot;唇形科鼠尾草属&quot;
+vxhan: &quot;原产南美巴西，各地广为栽培&quot;
+bafkd: &quot;一串红不耐寒，生育适温24℃，喜阳光充足，稍耐半阴，喜疏松肥沃的土壤&quot;
+feusk: &quot;建议种植于南面阳台，每周浇100ml的水，浇水要掌握见干见湿的原则，保持土壤60%左右的土壤含水量&quot;
+rjsal: &quot;恋爱的心，象征男女之间纯洁的爱情&quot;
+tquso: &quot;22|24&quot;
+qiske: &quot;200|300&quot;
+xvsml: &quot;30|48&quot;
+qkofs: &quot;50|60&quot;
+hajsk: &quot;20190129214317|20190129214332&quot;
+</code></pre>
+
+<h4 id="_31">后台响应</h4>
+<ul>
+<li>操作数据表：nplant、nwatch</li>
+<li>返回字段：无</li>
+<li>响应示例：</li>
+</ul>
+<pre><code class="JSON">// 请求成功
+{
+    code: &quot;1&quot;,
+    msg: &quot;编辑植物信息成功&quot;,
+    data: {}
+}
+
+// 请求失败
+{
+    &quot;code&quot;: &quot;0&quot;,
+    &quot;msg&quot;: &quot;具体的错误信息&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+
+<h2 id="_32">删除植物信息</h2>
+<blockquote>
+<p>拥有数据管理权限的员工可以删除已有的植物信息。</p>
+</blockquote>
+<h4 id="_33">前端请求</h4>
+<ul>
+<li>请求方式：POST</li>
+<li>请求地址：/data/plant/data/del</li>
+<li>请求参数：植物号（uqock）</li>
+<li>请求示例：</li>
+</ul>
+<pre><code>uqock：1
+</code></pre>
+
+<h4 id="_34">后台响应</h4>
+<ul>
+<li>操作数据表：nplant、nwatch</li>
+<li>返回字段：无</li>
+<li>响应示例：</li>
+</ul>
+<pre><code class="JSON">// 请求成功
+{
+    code: &quot;1&quot;,
+    msg: &quot;删除植物信息成功&quot;,
+    data: {}
+}
+
+// 请求失败
+{
+    &quot;code&quot;: &quot;0&quot;,
+    &quot;msg&quot;: &quot;具体的错误信息&quot;,
+    &quot;data&quot;: {}
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

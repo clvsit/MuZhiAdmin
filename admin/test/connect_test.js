@@ -274,9 +274,18 @@ Mock.mock(/http:\/\/test.com\/data\/plant\/data\/add/, {
 /**
  * 数据管理：上传植物图片
  */
-Mock.mock(/http:\/\/test.com\/data\/plant\/data\/upload/, {
+Mock.mock(/http:\/\/test.com\/data\/plant\/picture\/add/, {
     code: "1",
     msg: "上传植物图片成功",
+    data: {}
+});
+
+/**
+ * 数据管理：删除上传的植物图片
+ */
+Mock.mock(/http:\/\/test.com\/data\/plant\/picture\/del/, {
+    code: "1",
+    msg: "删除上传的植物图片成功",
     data: {}
 });
 

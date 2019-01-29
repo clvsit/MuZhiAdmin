@@ -176,10 +176,37 @@
             uploadBtn = document.getElementById("uploadBtn"),
             file = document.getElementById("file");
 
-        let imageNumber = 0;
+        let imageNumber = 0,
+            imageValue = [];
 
         uploadWrap.addEventListener("click", function (event) {
             const target = event.target;
+
+            if (target.tagName === "I") {
+                const layerIndex = MuZhi.Layer.showLoading(1);
+
+                MuZhi.Link.connect("delPlantPicture", {
+                    data: {
+                        name: target.dataset.name
+                    },
+                    successFn () {
+                        $(target).parents(".upload-image").remove();
+                        imageNumber--;
+                        if (imageNumber < 5) {
+                            uploadBtn.style.display = "block";
+                        }
+                        for (let i = 0, len = imageValue.length; i < len; i++) {
+                            if (imageValue[i] === target.dataset.name) {
+                                imageValue.splice(i, 1);
+                            }
+                        }
+                        MuZhi.Layer.closeLoading(layerIndex);
+                    },
+                    completeFn () {
+                        MuZhi.Layer.closeLoading(layerIndex);
+                    }
+                })
+            }
         });
         uploadBtn.addEventListener("click", function () {
             file.click();
@@ -191,21 +218,29 @@
             if (/image\/*/.test(fileObj.type)) {
                 reader.readAsDataURL(fileObj);
                 reader.onprogress = function () {
-                    const layerIndex = MuZhi.Layer.showLoading(1);
+                    const layerIndex = MuZhi.Layer.showLoading(1),
+                        pictureName = MuZhi.Util.getSystemTime("YYYYMMddHHmmss");
 
-                    $("<div class='upload-image'>" +
-                        "<img src='" + reader.result + "'/>" +
-                        "<div class='upload-image-remove'>" +
-                        "<i class='layui-icon layui-icon-delete'></i>" +
-                        "</div></div>").insertBefore(uploadBtn);
-
-                    MuZhi.Link.connect("uploadPlant", {
-                        data: reader.result,
+                    console.log({
+                        name: pictureName,
+                        picture: reader.result
+                    });
+                    MuZhi.Link.connect("uploadPlantPicture", {
+                        data: {
+                            name: pictureName,
+                            picture: reader.result
+                        },
                         successFn () {
+                            $("<div class='upload-image'>" +
+                                "<img src='" + reader.result + "'/>" +
+                                "<div class='upload-image-remove'>" +
+                                "<i class='layui-icon layui-icon-delete' data-name='" + pictureName + "'></i>" +
+                                "</div></div>").insertBefore(uploadBtn);
                             imageNumber++;
-                            if (imageNumber >= 2) {
+                            if (imageNumber >= 5) {
                                 uploadBtn.style.display = "none";
                             }
+                            imageValue.push(pictureName);
                             MuZhi.Layer.closeLoading(layerIndex);
                         },
                         completeFn () {
@@ -218,9 +253,10 @@
             }
         }, false);
 
+
         form.on('submit(add)', function (data) {
+            data.field.picture = imageValue.join("|");
             MuZhi.Util.changeType(data.field, "type", "int");
-            data.field["account"] = sessionStorage.getItem("user");
             console.log(data.field);
 
             MuZhi.Link.connect("addPlant", {
