@@ -1,0 +1,18 @@
+##########
+## 渲染选项
+##########
+renderConfig:
+      author: toolkit
+      modelPackage: com.muzhi.model
+      daoPackage: com.muzhi.dao
+      xmlPackage: com.muzhi.mapper
+      formPackage: com.muzhi.form
+      servicePackage: com.muzhi.service
+      restPackage: com.muzhi.rest
+      controllerPackage: com.muzhi.controller
+      tables: t_tag,r_user_tag
+databaseConfig:
+      driverUrl: jdbc:mysql://127.0.0.1:3306/muzhi?characterEncoding=utf8
+      driver: com.mysql.jdbc.Driver
+      user: root
+      password: 123456
